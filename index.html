@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolves of Wall Street - Where Traders Find Their Edge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-abyss: #050a07;
+            --bg-primary: #0a1a0f;
+            --bg-secondary: #0d1f14;
+            --bg-card: #0b1810;
+            --bg-card-hover: #112a1a;
+            --bg-elevated: #143322;
+            --green-primary: #22c55e;
+            --green-bright: #1db954;
+            --green-dim: rgba(34, 197, 94, 0.12);
+            --green-glow: rgba(29, 185, 84, 0.4);
+            --green-dark: #0f6b30;
+            --green-muted: #1a4d2e;
+            --gold: #d4a843;
+            --text-primary: #f0f4f0;
+            --text-secondary: #7a9b87;
+            --text-muted: #3d5c4a;
+            --border-default: #152b1d;
+            --border-green: rgba(34, 197, 94, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Film grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1000;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 20% 50%, transparent 20%, rgba(255, 255, 255, 0.3) 21%, rgba(255, 255, 255, 0.3) 34%, transparent 35%, transparent),
+                linear-gradient(0deg, rgba(255, 255, 255, 0.2), transparent 50%, rgba(255, 255, 255, 0.2));
+            background-size: 75px 100px, 50px 60px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--green-primary);
+            border-radius: 3px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--green-glow);
+            color: var(--text-primary);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 26, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-default);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--green-primary);
+        }
+
+        .nav-cta {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--green-bright);
+            transform: translateY(-2px);
+        }
+
+        /* Signal Ticker */
+        .signal-ticker {
+            margin-top: 80px;
+            background: var(--bg-abyss);
+            border-bottom: 1px solid var(--border-green);
+            padding: 0.75rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: scroll-ticker 60s linear infinite;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            margin-right: 3rem;
+            padding: 0.5rem 1rem;
+            background: var(--green-dim);
+            border-radius: 4px;
+            color: var(--green-primary);
+        }
+
+        .ticker-item.loss {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+        }
+
+        @keyframes scroll-ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--green-primary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--green-primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-cta {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--green-glow);
+        }
+
+        .hero-cta:hover {
+            background: var(--green-bright);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--green-glow);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-green);
+            transform: translateY(-5px);
+        }
+
+        .product-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--green-primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+        }
+
+        .product-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .product-features li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--green-primary);
+            font-weight: bold;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 4rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, var(--green-primary), transparent, var(--green-primary));
+            border-radius: 8px;
+            z-index: -1;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--green-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--bg-primary);
+            margin-right: 1rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .testimonial-role {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* What You're Missing */
+        .missing-section {
+            padding: 4rem 2rem;
+            background: var(--bg-abyss);
+            text-align: center;
+        }
+
+        .missing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .missing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-green);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .missing-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(5, 10, 7, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .missing-lock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            font-size: 2rem;
+            color: var(--green-primary);
+        }
+
+        .missing-card h4 {
+            color: var(--green-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .missing-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .unlock-cta {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .unlock-cta:hover {
+            background: var(--green-bright);
+            transform: translateY(-2px);
+        }
+
+        /* Numbers Section */
+        .numbers {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .number-item {
+            padding: 2rem;
+        }
+
+        .number-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .number-label {
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Founding Members */
+        .founding {
+            padding: 4rem 2rem;
+            background: var(--bg-primary);
+            text-align: center;
+        }
+
+        .progress-container {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-abyss);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-primary), var(--green-bright));
+            width: 23%;
+            border-radius: 6px;
+            animation: progress-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes progress-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .progress-text {
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .urgency-text {
+            color: var(--green-primary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 4rem 2rem;
+            background: var(--bg-abyss);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-default);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--green-primary);
+        }
+
+        .footer-disclaimer {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--green-primary);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                position: static;
+            }
+
+            .signal-ticker {
+                margin-top: 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero, .products, .social-proof, .missing-section, .numbers, .founding, .final-cta {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">WOLVES OF WALL STREET</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="https://discord.gg/wolves" class="nav-cta">Join the Pack</a>
+        </div>
+    </nav>
+
+    <!-- Signal Ticker -->
+    <div class="signal-ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">SPX 5050P → +$2,140 (3h)</span>
+            <span class="ticker-item">NQ 17800C → +$890 (45m)</span>
+            <span class="ticker-item loss">SPX 5075C → -$320 (6h)</span>
+            <span class="ticker-item">ALGO-TSF → +$1,675 (2h)</span>
+            <span class="ticker-item">NQ 17750P → +$540 (1h)</span>
+            <span class="ticker-item">SPX 5025P → +$980 (4h)</span>
+            <span class="ticker-item">ALGO-MEAN → +$1,220 (90m)</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Stop Trading Alone</h1>
+            <p class="hero-subtitle">Join 13,000+ traders who've found their edge in the pack. Real signals. Real transparency. Real results.</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number">$2.4M+</span>
+                    <span class="stat-label">Member Profits</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">68%</span>
+                    <span class="stat-label">Win Rate</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">18</span>
+                    <span class="stat-label">Months Live</span>
+                </div>
+            </div>
+            
+            <a href="pricing.html" class="hero-cta">Find Your Edge</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products fade-up">
+        <div class="section-container">
+            <h2 class="section-title">Three Ways to Hunt</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3 class="product-title">SPX Options</h3>
+                    <p class="product-desc">High-probability 0DTE and weekly plays on the S&P 500. Our bread and butter.</p>
+                    <ul class="product-features">
+                        <li>Live entry and exit alerts</li>
+                        <li>Risk management guidance</li>
+                        <li>Market context explanations</li>
+                        <li>Performance tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">NQ Futures</h3>
+                    <p class="product-desc">Scalp the Nasdaq with precision timing and clear risk parameters.</p>
+                    <ul class="product-features">
+                        <li>Intraday momentum plays</li>
+                        <li>Support/resistance levels</li>
+                        <li>Volume confirmation</li>
+                        <li>Quick profit targets</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">Algo Signals</h3>
+                    <p class="product-desc">Machine learning edge powered by The Strategy Factory. Data-driven entries.</p>
+                    <ul class="product-features">
+                        <li>Algorithmic pattern recognition</li>
+                        <li>Backtested strategies</li>
+                        <li>Automated signal generation</li>
+                        <li>TSF partnership exclusive</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof fade-up">
+        <div class="section-container">
+            <h2 class="section-title">The Pack Speaks</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">J</div>
+                        <div>
+                            <div class="testimonial-name">Jake_Trades</div>
+                            <div class="testimonial-role">Member since Oct 2024</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Was down $12K in other groups. Wolves got me back to profitable in 2 months. The transparency is what sold me - they show the losses too."</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <div class="testimonial-name">MarketMaven</div>
+                            <div class="testimonial-role">Member since Sep 2024</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"The algo signals are game-changing. Made back my yearly subscription in the first week. These aren't random calls - there's real strategy behind them."</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">R</div>
+                        <div>
+                            <div class="testimonial-name">RiskTaker_99</div>
+                            <div class="testimonial-role">Member since Aug 2024</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Finally found a group that's not just hype. Real education, real risk management, real community. Worth every penny."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You're Missing -->
+    <section class="missing-section fade-up">
+        <div class="section-container">
+            <h2 class="section-title">What You're Missing Right Now</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Members saw these signals 2 hours ago. Some are up $1,200+.</p>
+            
+            <div class="missing-cards">
+                <div class="missing-card">
+                    <h4>SPX 5050P Entry</h4>
+                    <p>Target: $15.50<br/>Stop: $11.20<br/>Size: 2-3 contracts</p>
+                    <div class="missing-lock">🔒</div>
+                </div>
+                
+                <div class="missing-card">
+                    <h4>NQ Long 17,825</h4>
+                    <p>Target: 17,850<br/>Stop: 17,810<br/>1:2 R/R ratio</p>
+                    <div class="missing-lock">🔒</div>
+                </div>
+                
+                <div class="missing-card">
+                    <h4>ALGO Signal #A47</h4>
+                    <p>Mean reversion play<br/>78% historical win rate<br/>TSF confidence: High</p>
+                    <div class="missing-lock">🔒</div>
+                </div>
+            </div>
+            
+            <a href="pricing.html" class="unlock-cta">Unlock the Den</a>
+        </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="numbers fade-up">
+        <div class="section-container">
+            <h2 class="section-title">The Numbers Don't Lie</h2>
+            <div class="numbers-grid">
+                <div class="number-item">
+                    <span class="number-value" data-target="13247">0</span>
+                    <span class="number-label">Pack Members</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value" data-target="340">0</span>
+                    <span class="number-label">Signals Per Month</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value" data-target="18">0</span>
+                    <span class="number-label">Months Running</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value" data-target="68">0</span>
+                    <span class="number-label">Win Rate %</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founding Members -->
+    <section class="founding fade-up">
+        <div class="section-container">
+            <h2 class="section-title">Founding Member Pricing</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Lock in $79/month before we raise prices. Limited spots available.</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">23 of 100 founding spots claimed</div>
+                <div class="urgency-text"><span class="pulse-dot"></span>77 spots remaining at this price</div>
+            </div>
+            
+            <a href="pricing.html" class="hero-cta">Lock In Founding Rate</a>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta fade-up">
+        <div class="section-container">
+            <h2>The Market Doesn't Wait</h2>
+            <p>Every day you trade alone is money left on the table. Join the pack that's already winning.</p>
+            <a href="pricing.html" class="hero-cta">Stop Trading Alone</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="https://discord.gg/wolves">Discord</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+        <div class="footer-disclaimer">
+            <p><strong>Risk Disclaimer:</strong> Trading involves substantial risk and is not suitable for all investors. Past performance does not guarantee future results. You may lose all or more of your initial investment. Never trade with money you cannot afford to lose. This is not financial advice.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const increment = target / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 20);
+        }
+
+        // Animate counters when in view
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.number-value[data-target]');
+                    counters.forEach(counter => {
+                        if (!counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const numbersSection = document.querySelector('.numbers');
+        if (numbersSection) {
+            counterObserver.observe(numbersSection);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

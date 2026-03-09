@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Wolves of Wall Street</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-abyss: #050a07;
+            --bg-primary: #0a1a0f;
+            --bg-secondary: #0d1f14;
+            --bg-card: #0b1810;
+            --bg-card-hover: #112a1a;
+            --bg-elevated: #143322;
+            --green-primary: #22c55e;
+            --green-bright: #1db954;
+            --green-dim: rgba(34, 197, 94, 0.12);
+            --green-glow: rgba(29, 185, 84, 0.4);
+            --green-dark: #0f6b30;
+            --green-muted: #1a4d2e;
+            --gold: #d4a843;
+            --text-primary: #f0f4f0;
+            --text-secondary: #7a9b87;
+            --text-muted: #3d5c4a;
+            --border-default: #152b1d;
+            --border-green: rgba(34, 197, 94, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Film grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1000;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 20% 50%, transparent 20%, rgba(255, 255, 255, 0.3) 21%, rgba(255, 255, 255, 0.3) 34%, transparent 35%, transparent),
+                linear-gradient(0deg, rgba(255, 255, 255, 0.2), transparent 50%, rgba(255, 255, 255, 0.2));
+            background-size: 75px 100px, 50px 60px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--green-primary);
+            border-radius: 3px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--green-glow);
+            color: var(--text-primary);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 26, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-default);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--green-primary);
+        }
+
+        .nav-cta {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--green-bright);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--green-primary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* Pricing Tiers */
+        .pricing {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--green-primary);
+            box-shadow: 0 0 30px var(--green-glow);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .pricing-card:hover:not(.disabled) {
+            transform: translateY(-5px);
+            border-color: var(--border-green);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tier-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .price-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .price {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .price-strike {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green-primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .features-list li.unavailable::before {
+            content: '✗';
+            color: var(--text-muted);
+        }
+
+        .features-list li.unavailable {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .pricing-cta.primary {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+        }
+
+        .pricing-cta.primary:hover {
+            background: var(--green-bright);
+            transform: translateY(-2px);
+        }
+
+        .pricing-cta.secondary {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-green);
+        }
+
+        .pricing-cta.secondary:hover {
+            background: var(--green-dim);
+            border-color: var(--green-primary);
+        }
+
+        .pricing-cta.disabled {
+            background: var(--bg-abyss);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        /* Feature Comparison */
+        .comparison {
+            padding: 4rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .comparison-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: var(--bg-elevated);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-default);
+        }
+
+        .table-header div {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .table-header div:first-child {
+            text-align: left;
+        }
+
+        .table-row {
+            padding: 1rem 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-default);
+            align-items: center;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row:nth-child(even) {
+            background: rgba(20, 51, 34, 0.3);
+        }
+
+        .feature-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .feature-check {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .check-yes {
+            color: var(--green-primary);
+        }
+
+        .check-no {
+            color: var(--text-muted);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .faq-question h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            color: var(--green-primary);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--bg-elevated);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Guarantee Section */
+        .guarantee {
+            padding: 3rem 2rem;
+            background: var(--bg-abyss);
+            text-align: center;
+        }
+
+        .guarantee-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 2px solid var(--green-primary);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .guarantee h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--green-primary);
+            margin-bottom: 1rem;
+        }
+
+        .guarantee p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 4rem 2rem;
+            background: var(--bg-primary);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .member-count {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--green-primary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--green-primary);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .hero-cta {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--green-glow);
+        }
+
+        .hero-cta:hover {
+            background: var(--green-bright);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--green-glow);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-default);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--green-primary);
+        }
+
+        .footer-disclaimer {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+
+            .table-header,
+            .table-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .table-header div:first-child,
+            .feature-name {
+                text-align: center;
+            }
+
+            .comparison-table {
+                overflow-x: auto;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero, .pricing, .comparison, .faq, .guarantee, .final-cta {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">WOLVES OF WALL STREET</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricing.html" class="active">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="https://discord.gg/wolves" class="nav-cta">Join the Pack</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Find Your Edge</h1>
+            <p class="hero-subtitle">Choose the plan that fits your trading style. All tiers include our proven strategies and supportive community.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section class="pricing">
+        <div class="section-container">
+            <div class="pricing-grid">
+                <!-- Free Tier -->
+                <div class="pricing-card fade-up">
+                    <div class="tier-name">Community</div>
+                    <div class="tier-desc">Join the pack and learn the basics of successful trading.</div>
+                    
+                    <div class="price-container">
+                        <span class="price">Free</span>
+                        <span class="price-period">Forever</span>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Discord community access</li>
+                        <li>Market education content</li>
+                        <li>General trading discussions</li>
+                        <li>Weekly market outlook</li>
+                        <li class="unavailable">Live signal alerts</li>
+                        <li class="unavailable">Entry/exit guidance</li>
+                        <li class="unavailable">Private channels</li>
+                    </ul>
+                    
+                    <a href="https://discord.gg/wolves" class="pricing-cta secondary">Join Free</a>
+                </div>
+
+                <!-- Pro Tier (Featured) -->
+                <div class="pricing-card featured fade-up">
+                    <div class="badge">Most Popular</div>
+                    <div class="tier-name">Pro</div>
+                    <div class="tier-desc">Full access to all signals, strategies, and private channels.</div>
+                    
+                    <div class="price-container">
+                        <span class="price-strike">$100</span>
+                        <span class="price">$79</span>
+                        <span class="price-period">per month (founding rate)</span>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Everything in Community</li>
+                        <li>All live signal alerts</li>
+                        <li>SPX Options signals</li>
+                        <li>NQ Futures calls</li>
+                        <li>Algo signals (TSF powered)</li>
+                        <li>Entry & exit alerts</li>
+                        <li>Risk management guidance</li>
+                        <li>Private member channels</li>
+                        <li>Performance tracking</li>
+                    </ul>
+                    
+                    <a href="https://discord.gg/wolves" class="pricing-cta primary">Start Hunting</a>
+                </div>
+
+                <!-- Elite Tier (Coming Soon) -->
+                <div class="pricing-card disabled fade-up">
+                    <div class="tier-name">Elite</div>
+                    <div class="tier-desc">Advanced strategies and one-on-one mentorship. Coming soon.</div>
+                    
+                    <div class="price-container">
+                        <span class="price">$249</span>
+                        <span class="price-period">per month</span>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Everything in Pro</li>
+                        <li>Advanced algo strategies</li>
+                        <li>Personal mentorship</li>
+                        <li>Custom risk parameters</li>
+                        <li>Portfolio optimization</li>
+                        <li>Priority support</li>
+                        <li>Exclusive webinars</li>
+                    </ul>
+                    
+                    <div class="pricing-cta disabled">Coming Soon</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="comparison fade-up">
+        <div class="section-container">
+            <h2 class="section-title">Compare Plans</h2>
+            <div class="comparison-table">
+                <div class="table-header">
+                    <div>Feature</div>
+                    <div>Community</div>
+                    <div>Pro</div>
+                    <div>Elite</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">Discord Access</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">Education Content</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">Live Signal Alerts</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">SPX Options Signals</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">NQ Futures Calls</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">Algo Signals (TSF)</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">Risk Management</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-yes">✓</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="feature-name">Personal Mentorship</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-no">✗</div>
+                    <div class="feature-check check-yes">✓</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq fade-up">
+        <div class="section-container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I receive signals?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All signals are delivered through our private Discord channels with @everyone alerts. You'll get instant notifications on your phone when trades are called.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What's your win rate?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our current win rate is 68% over 18 months of live trading. We track every signal transparently and share both wins and losses with the community.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I cancel anytime?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely. You can cancel your subscription at any time. No long-term contracts or hidden fees. Cancel through Discord or contact support.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you provide risk management guidance?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Every signal includes recommended position sizing, stop losses, and profit targets. We emphasize proper risk management over chasing big wins.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What makes your algo signals different?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our algo signals are powered by The Strategy Factory (TSF), using machine learning and backtested strategies. These aren't random calls - they're data-driven entries based on proven patterns.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much capital do I need?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend starting with $2,000-$5,000 for options trading. Position sizing guidance is provided with each signal to match your account size and risk tolerance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a money-back guarantee?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer a 7-day money-back guarantee. If you're not satisfied with the service, contact us within 7 days for a full refund.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee fade-up">
+        <div class="section-container">
+            <div class="guarantee-box">
+                <h3>7-Day Money-Back Guarantee</h3>
+                <p>We're confident in our signals and community. If you're not completely satisfied within your first 7 days, we'll refund your payment in full. No questions asked.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta fade-up">
+        <div class="section-container">
+            <h2>Join 13,000+ Traders</h2>
+            <p>Don't trade alone. Join the pack that's already winning.</p>
+            <div class="member-count">
+                <span class="pulse-dot"></span>13,247 active members and growing
+            </div>
+            <a href="https://discord.gg/wolves" class="hero-cta">Start Your Hunt</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="https://discord.gg/wolves">Discord</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+        <div class="footer-disclaimer">
+            <p><strong>Risk Disclaimer:</strong> Trading involves substantial risk and is not suitable for all investors. Past performance does not guarantee future results. You may lose all or more of your initial investment. Never trade with money you cannot afford to lose. This is not financial advice.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
