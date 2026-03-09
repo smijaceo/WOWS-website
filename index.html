@@ -339,12 +339,24 @@
             position: relative;
             overflow: hidden;
             margin-top: 2rem;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
 
         .testimonials {
             display: flex;
-            transition: transform 0.5s ease;
             gap: 1.5rem;
+            width: max-content;
+            animation: scroll-testimonials 80s linear infinite;
+        }
+
+        .carousel-wrapper:hover .testimonials {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-testimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .testimonial {
@@ -353,16 +365,13 @@
             border-radius: 8px;
             padding: 1.5rem;
             position: relative;
-            min-width: calc(33.333% - 1rem);
+            width: 380px;
             flex-shrink: 0;
             box-sizing: border-box;
         }
 
-        @media (max-width: 1024px) {
-            .testimonial { min-width: calc(50% - 0.75rem); }
-        }
         @media (max-width: 640px) {
-            .testimonial { min-width: 100%; }
+            .testimonial { width: 300px; }
         }
 
         .testimonial::before {
@@ -411,47 +420,6 @@
             color: var(--text-secondary);
             line-height: 1.6;
             font-style: italic;
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .carousel-btn {
-            background: var(--green-primary);
-            color: var(--bg-primary);
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.2s;
-        }
-        .carousel-btn:hover { opacity: 0.8; }
-
-        .carousel-dots {
-            display: flex;
-            gap: 0.5rem;
-        }
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border-default);
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .carousel-dot.active {
-            background: var(--green-primary);
         }
 
         /* What You're Missing */
@@ -968,11 +936,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn" id="prevBtn">‹</button>
-                <div class="carousel-dots" id="carouselDots"></div>
-                <button class="carousel-btn" id="nextBtn">›</button>
-            </div>
+            <!-- controls removed -->
         </div>
     </section>
 
@@ -1139,48 +1103,11 @@
         });
     </script>
     <script>
+    // Duplicate testimonials for seamless infinite scroll
     (function() {
         const track = document.getElementById('testimonialTrack');
-        const cards = track.querySelectorAll('.testimonial');
-        const dotsContainer = document.getElementById('carouselDots');
-        let page = 0;
-
-        function getVisible() {
-            const w = window.innerWidth;
-            return w <= 640 ? 1 : w <= 1024 ? 2 : 3;
-        }
-
-        function totalPages() { return Math.ceil(cards.length / getVisible()); }
-
-        function buildDots() {
-            dotsContainer.innerHTML = '';
-            const t = totalPages();
-            for (let i = 0; i < t; i++) {
-                const d = document.createElement('button');
-                d.className = 'carousel-dot' + (i === page ? ' active' : '');
-                d.addEventListener('click', () => { page = i; update(); });
-                dotsContainer.appendChild(d);
-            }
-        }
-
-        function update() {
-            if (page >= totalPages()) page = 0;
-            if (page < 0) page = totalPages() - 1;
-            const cardWidth = cards[0].getBoundingClientRect().width + 24; // gap
-            track.style.transform = `translateX(-${page * getVisible() * cardWidth}px)`;
-            dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) =>
-                d.classList.toggle('active', i === page));
-        }
-
-        document.getElementById('nextBtn').addEventListener('click', () => { page++; update(); });
-        document.getElementById('prevBtn').addEventListener('click', () => { page--; update(); });
-        window.addEventListener('resize', () => { buildDots(); update(); });
-
-        // Auto-advance every 5s
-        setInterval(() => { page++; update(); }, 5000);
-
-        buildDots();
-        update();
+        const items = Array.from(track.children);
+        items.forEach(item => track.appendChild(item.cloneNode(true)));
     })();
     </script>
 </body>
