@@ -324,20 +324,67 @@
         @media (max-width: 900px) {
             .free-grid { grid-template-columns: 1fr 1fr; }
             .courses-grid { grid-template-columns: 1fr; }
-            .algo-inner { flex-direction: column; align-items: flex-start; }
         }
         @media (max-width: 600px) {
-            nav { padding: 1rem 0; }
-            .nav-inner { padding: 0 1.25rem; }
+            /* Nav */
+            nav { padding: 0.75rem 0; }
+            .nav-inner { padding: 0 1rem; }
             .nav-link { display: none; }
-            .hero { padding: 7rem 1.25rem 3rem; }
-            .hero-proof { flex-direction: column; gap: 1.5rem; }
-            .free-grid { grid-template-columns: 1fr; }
-            .free-section, .courses, .testimonials-header { padding-left: 1.25rem; padding-right: 1.25rem; }
-            .course { padding: 2rem; }
-            .t-card { width: 300px; }
-            footer { flex-direction: column; }
-            .footer-disclaimer { text-align: left; }
+            .wordmark { font-size: 1.2rem; letter-spacing: 2px; }
+            .join-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+
+            /* Hero — tighter, punchier on mobile */
+            .hero { min-height: 100svh; padding: 5.5rem 1.25rem 2.5rem; }
+            .hero-orb { width: 350px; height: 350px; }
+            .hero-label { font-size: 0.7rem; margin-bottom: 1.5rem; padding: 0.35rem 0.85rem; }
+            .hero h1 { font-size: 2.8rem; margin-bottom: 1rem; }
+            .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+            .hero-actions { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+            .btn-main, .btn-ghost { text-align: center; padding: 0.9rem 1.5rem; font-size: 0.95rem; }
+            .hero-proof {
+                flex-direction: row; gap: 0; margin-top: 2.5rem; padding-top: 1.5rem;
+                justify-content: space-around;
+            }
+            .proof-num { font-size: 1.6rem; }
+            .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
+
+            /* Sections — consistent mobile padding */
+            .free-section, .courses, .testimonials-section, .cta-final {
+                padding: 3.5rem 1.25rem;
+            }
+            .testimonials-header { padding: 0 1.25rem; margin-bottom: 1.5rem; }
+            .section-heading { font-size: 2rem; }
+            .section-desc { font-size: 0.95rem; }
+
+            /* Free grid — 2 cols on mobile, compact */
+            .free-grid { grid-template-columns: 1fr 1fr; }
+            .free-card { padding: 1.25rem; }
+            .free-card-icon { width: 36px; height: 36px; font-size: 1.1rem; border-radius: 8px; margin-bottom: 0.6rem; }
+            .free-card h3 { font-size: 0.85rem; }
+            .free-card p { font-size: 0.8rem; }
+
+            /* Course cards */
+            .course { padding: 1.75rem; }
+            .course h3 { font-size: 1.8rem; }
+            .course-price { font-size: 2.5rem; }
+            .course-desc { font-size: 0.9rem; }
+            .course-list li { font-size: 0.85rem; padding: 0.4rem 0; }
+            .course-cta { padding: 0.85rem; }
+
+            /* Testimonials */
+            .t-card { width: 280px; padding: 1.25rem; }
+            .t-text { font-size: 0.85rem; }
+
+            /* Final CTA */
+            .cta-final h2 { font-size: 2.2rem; }
+            .cta-final p { font-size: 0.95rem; }
+
+            /* Footer */
+            footer { flex-direction: column; padding: 1.5rem 1.25rem; gap: 1rem; }
+            .footer-disclaimer { text-align: left; font-size: 0.65rem; }
+
+            /* Divider */
+            .divider { margin-left: 1.25rem; margin-right: 1.25rem; }
         }
     </style>
 </head>
