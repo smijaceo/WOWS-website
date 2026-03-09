@@ -335,11 +335,16 @@
             background: var(--bg-primary);
         }
 
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
             margin-top: 2rem;
+        }
+
+        .testimonials {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 1.5rem;
         }
 
         .testimonial {
@@ -348,6 +353,16 @@
             border-radius: 8px;
             padding: 1.5rem;
             position: relative;
+            min-width: calc(33.333% - 1rem);
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonial { min-width: calc(50% - 0.75rem); }
+        }
+        @media (max-width: 640px) {
+            .testimonial { min-width: 100%; }
         }
 
         .testimonial::before {
@@ -379,6 +394,7 @@
             font-weight: bold;
             color: var(--bg-primary);
             margin-right: 1rem;
+            flex-shrink: 0;
         }
 
         .testimonial-name {
@@ -395,6 +411,47 @@
             color: var(--text-secondary);
             line-height: 1.6;
             font-style: italic;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            background: var(--green-primary);
+            color: var(--bg-primary);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+        .carousel-btn:hover { opacity: 0.8; }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-default);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .carousel-dot.active {
+            background: var(--green-primary);
         }
 
         /* What You're Missing */
@@ -767,39 +824,154 @@
     <section class="social-proof fade-up">
         <div class="section-container">
             <h2 class="section-title">The Pack Speaks</h2>
-            <div class="testimonials">
-                <div class="testimonial">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">S</div>
-                        <div>
-                            <div class="testimonial-name">Sean</div>
-                            <div class="testimonial-role">April 2026</div>
+            <div class="carousel-wrapper">
+                <div class="testimonials" id="testimonialTrack">
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">R</div>
+                            <div>
+                                <div class="testimonial-name">Richard</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
                         </div>
+                        <p class="testimonial-text">"Ryan's mentorship has truly helped guide me through my first months trading. The NQ strat is well worth it since it shows solid advice and 1-on-1 guidance on tracking methods. Thanks to him I've had my fair share of payouts."</p>
                     </div>
-                    <p class="testimonial-text">"I just bought NQ a couple weeks ago to support Ryan. Ended up learning a few things. Definitely worth the $. I trade EMAs w/ Orderflow. King Henny and Ryan go in-depth to help newbies understand, definitely a good system for people new or old to trading."</p>
-                </div>
-                
-                <div class="testimonial">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">U</div>
-                        <div>
-                            <div class="testimonial-name">Unii</div>
-                            <div class="testimonial-role">February 2026</div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">T</div>
+                            <div>
+                                <div class="testimonial-name">Tyler</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
                         </div>
+                        <p class="testimonial-text">"Ryan and King Henny's NQ course actually changed my life. I've been trading for 5 months and his strategies have made me over $10,000 in payouts. Everything is super easy to understand. I would purchase this course 100 times over again."</p>
                     </div>
-                    <p class="testimonial-text">"7 months later I finally got my 2nd payout thanks to the strat 🐺"</p>
-                </div>
-                
-                <div class="testimonial">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">C</div>
-                        <div>
-                            <div class="testimonial-name">carseats</div>
-                            <div class="testimonial-role">December 2025</div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">L</div>
+                            <div>
+                                <div class="testimonial-name">lilsham25</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
                         </div>
+                        <p class="testimonial-text">"I've been trading for a little over a year and already made over 15K in payouts. I went from broke college student who had to ask their parents for money to being able to provide for myself. I am truly grateful."</p>
                     </div>
-                    <p class="testimonial-text">"I found Ryan in another discord and followed him over here. I studied his SPX class on repeat all Memorial Day weekend and never looked back! I mainly trade NQ now but will do SPX when I see a good opportunity. 2025 was profitable and I'm so happy I found you fr!!"</p>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">O</div>
+                            <div>
+                                <div class="testimonial-name">OvoxoAlpha</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"I've been keeping up with Ryan for the past year and a half and the NQ course is definitely his best work yet. The course was the best investment for myself — it really got the ball rolling for my accounts."</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">I</div>
+                            <div>
+                                <div class="testimonial-name">ItsRiskAlert</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"I am forever grateful. They showed me a life-changing perspective. This strat has taught me to be consistent and disciplined not just in trading but also mentally. Thank you guys ❤️"</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">C</div>
+                            <div>
+                                <div class="testimonial-name">coalton</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"I've been learning from Ryan for over a year and now having access to the official NQ strat is genuinely such an incredible resource. It can change your life 🚀"</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">G</div>
+                            <div>
+                                <div class="testimonial-name">gian</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Switched to futures about three weeks ago, learned Ryan's strategy and passed my combine. The strategy is super simple and easy to follow. I'm feeling more confident every day."</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">C</div>
+                            <div>
+                                <div class="testimonial-name">carseats</div>
+                                <div class="testimonial-role">December 2025</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"I've been trading options on and off since 2019 but never had a profitable year. After studying Ryan's SPX class I never looked back. 2025 was profitable and I'm so happy I found you fr!!"</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">M</div>
+                            <div>
+                                <div class="testimonial-name">MJ</div>
+                                <div class="testimonial-role">January 2026</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"This NQ strat is the shit 🔥 I just made $1,500 today shorting NQ. If you ain't on that game you're missing out."</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">U</div>
+                            <div>
+                                <div class="testimonial-name">UⓂER</div>
+                                <div class="testimonial-role">January 2026</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Purchased the strat on Jan 6th and paper traded it. After becoming profitable, I transitioned to live. Apex account purchased on the 13th, passed the eval on the 14th."</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">H</div>
+                            <div>
+                                <div class="testimonial-name">hunter</div>
+                                <div class="testimonial-role">February 2026</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"First week on TopStep funded, first payout with the strat. Huge thanks to Ryan and Henny who created an awesome course to help me build a strategy and take trades on my own! Also just hit my first $5K day!! LFGGG"</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">U</div>
+                            <div>
+                                <div class="testimonial-name">Unii</div>
+                                <div class="testimonial-role">February 2026</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"7 months later I finally got my 2nd payout thanks to the strat 🐺"</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">G</div>
+                            <div>
+                                <div class="testimonial-name">gian</div>
+                                <div class="testimonial-role">February 2026</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Started trading futures 3 months ago with Ryan's strat, passed my first XFA, got 3 payouts — 1 from last month, 2 this February. Been a really good journey."</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">S</div>
+                            <div>
+                                <div class="testimonial-name">Sean</div>
+                                <div class="testimonial-role">March 2026</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Definitely worth the $. I trade EMAs w/ Orderflow. King Henny and Ryan go in-depth to help newbies understand — definitely a good system for people new or old to trading."</p>
+                    </div>
                 </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn">‹</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+                <button class="carousel-btn" id="nextBtn">›</button>
             </div>
         </div>
     </section>
@@ -965,6 +1137,51 @@
                 });
             });
         });
+    </script>
+    <script>
+    (function() {
+        const track = document.getElementById('testimonialTrack');
+        const cards = track.querySelectorAll('.testimonial');
+        const dotsContainer = document.getElementById('carouselDots');
+        let page = 0;
+
+        function getVisible() {
+            const w = window.innerWidth;
+            return w <= 640 ? 1 : w <= 1024 ? 2 : 3;
+        }
+
+        function totalPages() { return Math.ceil(cards.length / getVisible()); }
+
+        function buildDots() {
+            dotsContainer.innerHTML = '';
+            const t = totalPages();
+            for (let i = 0; i < t; i++) {
+                const d = document.createElement('button');
+                d.className = 'carousel-dot' + (i === page ? ' active' : '');
+                d.addEventListener('click', () => { page = i; update(); });
+                dotsContainer.appendChild(d);
+            }
+        }
+
+        function update() {
+            if (page >= totalPages()) page = 0;
+            if (page < 0) page = totalPages() - 1;
+            const cardWidth = cards[0].getBoundingClientRect().width + 24; // gap
+            track.style.transform = `translateX(-${page * getVisible() * cardWidth}px)`;
+            dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) =>
+                d.classList.toggle('active', i === page));
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', () => { page++; update(); });
+        document.getElementById('prevBtn').addEventListener('click', () => { page--; update(); });
+        window.addEventListener('resize', () => { buildDots(); update(); });
+
+        // Auto-advance every 5s
+        setInterval(() => { page++; update(); }, 5000);
+
+        buildDots();
+        update();
+    })();
     </script>
 </body>
 </html>
