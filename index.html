@@ -30,11 +30,7 @@
             --border-green: rgba(34, 197, 94, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -44,970 +40,602 @@
             overflow-x: hidden;
         }
 
-        /* Film grain overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 1000;
-            pointer-events: none;
-            background-image: 
-                radial-gradient(circle at 20% 50%, transparent 20%, rgba(255, 255, 255, 0.3) 21%, rgba(255, 255, 255, 0.3) 34%, transparent 35%, transparent),
-                linear-gradient(0deg, rgba(255, 255, 255, 0.2), transparent 50%, rgba(255, 255, 255, 0.2));
-            background-size: 75px 100px, 50px 60px;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--green-primary); border-radius: 3px; }
+        ::selection { background: var(--green-glow); color: var(--text-primary); }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--green-primary);
-            border-radius: 3px;
-        }
-
-        /* Selection */
-        ::selection {
-            background: var(--green-glow);
-            color: var(--text-primary);
-        }
-
-        /* Navigation */
+        /* ── Nav ── */
         .nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            position: fixed; top: 0; width: 100%;
             background: rgba(10, 26, 15, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-default);
-            z-index: 100;
-            padding: 1rem 0;
+            z-index: 100; padding: 1rem 0;
         }
-
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 0 2rem;
         }
-
         .logo {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: 1px;
+            font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700;
+            color: var(--text-primary); text-decoration: none; letter-spacing: 1px;
         }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--green-primary);
-        }
-
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--green-primary); }
         .nav-cta {
-            background: var(--green-primary);
-            color: var(--bg-primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            background: var(--green-primary); color: var(--bg-primary);
+            padding: 0.75rem 1.5rem; border-radius: 6px;
+            text-decoration: none; font-weight: 600; transition: all 0.3s;
         }
+        .nav-cta:hover { background: var(--green-bright); transform: translateY(-2px); }
 
-        .nav-cta:hover {
-            background: var(--green-bright);
-            transform: translateY(-2px);
-        }
-
-        /* Signal Ticker */
-        .signal-ticker {
-            margin-top: 80px;
-            background: var(--bg-abyss);
-            border-bottom: 1px solid var(--border-green);
-            padding: 0.75rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .ticker-content {
-            display: inline-block;
-            animation: scroll-ticker 60s linear infinite;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        .ticker-item {
-            display: inline-block;
-            margin-right: 3rem;
-            padding: 0.5rem 1rem;
-            background: var(--green-dim);
-            border-radius: 4px;
-            color: var(--green-primary);
-        }
-
-        .ticker-item.loss {
-            background: rgba(239, 68, 68, 0.12);
-            color: #ef4444;
-        }
-
-        @keyframes scroll-ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Hero Section */
+        /* ── Hero ── */
         .hero {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 6rem 2rem 4rem;
+            position: relative; overflow: hidden;
+            background: radial-gradient(ellipse at 50% 0%, rgba(34,197,94,0.08) 0%, transparent 60%),
+                        var(--bg-abyss);
         }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .hero::before {
+            content: '🐺'; font-size: 20rem; position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            opacity: 0.03; pointer-events: none;
         }
-
+        .hero-container { max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-badge {
+            display: inline-block; padding: 0.5rem 1.25rem; border-radius: 50px;
+            border: 1px solid var(--border-green); background: var(--green-dim);
+            color: var(--green-primary); font-size: 0.9rem; font-weight: 500;
+            margin-bottom: 2rem; letter-spacing: 0.5px;
+        }
+        .hero-badge .pulse-dot {
+            display: inline-block; width: 8px; height: 8px;
+            background: var(--green-primary); border-radius: 50%;
+            margin-right: 0.5rem; animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
         .hero h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--green-primary) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Oswald', sans-serif; font-size: 4.5rem; font-weight: 700;
+            line-height: 1.05; margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--green-primary) 100%);
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.5;
+            font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 2.5rem;
+            line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto;
         }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 2rem 0;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--green-primary);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-cta {
-            background: var(--green-primary);
-            color: var(--bg-primary);
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--green-primary); color: var(--bg-primary);
+            padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none;
+            font-weight: 700; font-size: 1.1rem; transition: all 0.3s;
             box-shadow: 0 4px 20px var(--green-glow);
         }
+        .btn-primary:hover { background: var(--green-bright); transform: translateY(-3px); box-shadow: 0 8px 30px var(--green-glow); }
+        .btn-secondary {
+            background: transparent; color: var(--text-primary);
+            padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 1.1rem; transition: all 0.3s;
+            border: 1px solid var(--border-green);
+        }
+        .btn-secondary:hover { border-color: var(--green-primary); background: var(--green-dim); }
+        .hero-stats {
+            display: flex; justify-content: center; gap: 3rem; margin-top: 3rem;
+            padding-top: 2rem; border-top: 1px solid var(--border-default);
+        }
+        .hero-stat { text-align: center; }
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 600;
+            color: var(--green-primary); display: block;
+        }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .hero-cta:hover {
-            background: var(--green-bright);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px var(--green-glow);
+        /* ── Section shared ── */
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-title {
+            font-family: 'Oswald', sans-serif; font-size: 2.5rem; font-weight: 700;
+            text-align: center; margin-bottom: 1rem; color: var(--text-primary);
+        }
+        .section-subtitle {
+            text-align: center; color: var(--text-secondary); font-size: 1.1rem;
+            margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;
         }
 
-        /* Products Section */
-        .products {
-            padding: 4rem 2rem;
+        /* ── Free Community ── */
+        .community {
+            padding: 5rem 2rem;
             background: var(--bg-secondary);
         }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .community-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .community-card {
+            background: var(--bg-card); border: 1px solid var(--border-default);
+            border-radius: 12px; padding: 2rem; transition: all 0.3s;
+        }
+        .community-card:hover { border-color: var(--border-green); transform: translateY(-4px); }
+        .community-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .community-card h3 {
+            font-family: 'Oswald', sans-serif; font-size: 1.2rem;
+            color: var(--text-primary); margin-bottom: 0.5rem;
+        }
+        .community-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        .free-tag {
+            display: inline-block; background: var(--green-dim); color: var(--green-primary);
+            font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem;
+            border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 0.75rem;
         }
 
-        .section-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-default);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-green);
-            transform: translateY(-5px);
-        }
-
-        .product-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--green-primary);
-            margin-bottom: 1rem;
-        }
-
-        .product-desc {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .product-features {
-            list-style: none;
-        }
-
-        .product-features li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-        }
-
-        .product-features li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--green-primary);
-            font-weight: bold;
-        }
-
-        /* Social Proof */
-        .social-proof {
-            padding: 4rem 2rem;
+        /* ── Courses ── */
+        .courses {
+            padding: 5rem 2rem;
             background: var(--bg-primary);
         }
+        .courses-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+        .course-card {
+            background: var(--bg-card); border: 1px solid var(--border-default);
+            border-radius: 16px; padding: 2.5rem; position: relative; overflow: hidden;
+            transition: all 0.3s;
+        }
+        .course-card:hover { border-color: var(--green-primary); transform: translateY(-5px); }
+        .course-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--green-primary), var(--green-bright));
+        }
+        .course-instrument {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--green-primary); margin-bottom: 0.5rem; letter-spacing: 1px;
+        }
+        .course-card h3 {
+            font-family: 'Oswald', sans-serif; font-size: 1.8rem;
+            color: var(--text-primary); margin-bottom: 0.75rem;
+        }
+        .course-price {
+            font-family: 'JetBrains Mono', monospace; font-size: 2.5rem;
+            color: var(--green-primary); font-weight: 700; margin-bottom: 0.25rem;
+        }
+        .course-price-note { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+        .course-desc {
+            color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;
+        }
+        .course-features { list-style: none; margin-bottom: 2rem; }
+        .course-features li {
+            position: relative; padding-left: 1.75rem; margin-bottom: 0.6rem;
+            color: var(--text-secondary); font-size: 0.95rem;
+        }
+        .course-features li::before {
+            content: '✓'; position: absolute; left: 0; color: var(--green-primary); font-weight: 700;
+        }
+        .course-cta {
+            display: block; text-align: center; background: var(--green-primary);
+            color: var(--bg-primary); padding: 0.9rem; border-radius: 8px;
+            text-decoration: none; font-weight: 700; transition: all 0.3s;
+        }
+        .course-cta:hover { background: var(--green-bright); }
 
+        /* ── Testimonials ── */
+        .social-proof { padding: 5rem 2rem; background: var(--bg-secondary); }
         .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            margin-top: 2rem;
+            position: relative; overflow: hidden; margin-top: 2rem;
             mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
-
         .testimonials {
-            display: flex;
-            gap: 1.5rem;
-            width: max-content;
-            animation: scroll-testimonials 80s linear infinite;
+            display: flex; gap: 1.5rem; width: max-content;
+            animation: scroll-testimonials 90s linear infinite;
         }
-
-        .carousel-wrapper:hover .testimonials {
-            animation-play-state: paused;
-        }
-
+        .carousel-wrapper:hover .testimonials { animation-play-state: paused; }
         @keyframes scroll-testimonials {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-
         .testimonial {
-            background: var(--bg-card);
-            border: 1px solid var(--border-default);
-            border-radius: 8px;
-            padding: 1.5rem;
-            position: relative;
-            width: 380px;
-            flex-shrink: 0;
-            box-sizing: border-box;
+            background: var(--bg-card); border: 1px solid var(--border-default);
+            border-radius: 8px; padding: 1.5rem; width: 380px;
+            flex-shrink: 0; position: relative;
         }
-
-        @media (max-width: 640px) {
-            .testimonial { width: 300px; }
-        }
-
+        @media (max-width: 640px) { .testimonial { width: 300px; } }
         .testimonial::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
+            content: ''; position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px;
             background: linear-gradient(45deg, var(--green-primary), transparent, var(--green-primary));
-            border-radius: 8px;
-            z-index: -1;
+            border-radius: 8px; z-index: -1;
         }
-
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
+        .testimonial-header { display: flex; align-items: center; margin-bottom: 1rem; }
         .testimonial-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--green-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--bg-primary);
-            margin-right: 1rem;
-            flex-shrink: 0;
+            width: 40px; height: 40px; background: var(--green-primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--bg-primary); margin-right: 1rem; flex-shrink: 0;
         }
+        .testimonial-name { font-weight: 600; color: var(--text-primary); }
+        .testimonial-role { color: var(--text-muted); font-size: 0.9rem; }
+        .testimonial-text { color: var(--text-secondary); line-height: 1.6; font-style: italic; }
 
-        .testimonial-name {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .testimonial-role {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-style: italic;
-        }
-
-        /* What You're Missing */
-        .missing-section {
+        /* ── Algo (subtle) ── */
+        .algo-section {
             padding: 4rem 2rem;
             background: var(--bg-abyss);
-            text-align: center;
-        }
-
-        .missing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .missing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-green);
-            border-radius: 8px;
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .missing-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(5, 10, 7, 0.8);
-            backdrop-filter: blur(4px);
-            z-index: 2;
-        }
-
-        .missing-lock {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            font-size: 2rem;
-            color: var(--green-primary);
-        }
-
-        .missing-card h4 {
-            color: var(--green-primary);
-            margin-bottom: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .missing-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .unlock-cta {
-            background: var(--green-primary);
-            color: var(--bg-primary);
-            padding: 1rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .unlock-cta:hover {
-            background: var(--green-bright);
-            transform: translateY(-2px);
-        }
-
-        /* Numbers Section */
-        .numbers {
-            padding: 4rem 2rem;
-            background: var(--bg-secondary);
-            text-align: center;
-        }
-
-        .numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .number-item {
-            padding: 2rem;
-        }
-
-        .number-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--green-primary);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .number-label {
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        /* Founding Members */
-        .founding {
-            padding: 4rem 2rem;
-            background: var(--bg-primary);
-            text-align: center;
-        }
-
-        .progress-container {
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: var(--bg-abyss);
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--green-primary), var(--green-bright));
-            width: 23%;
-            border-radius: 6px;
-            animation: progress-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes progress-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        .progress-text {
-            color: var(--text-secondary);
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 0.5rem;
-        }
-
-        .urgency-text {
-            color: var(--green-primary);
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        /* Final CTA */
-        .final-cta {
-            padding: 4rem 2rem;
-            background: var(--bg-abyss);
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .final-cta p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-primary);
             border-top: 1px solid var(--border-default);
-            padding: 2rem;
-            text-align: center;
+            border-bottom: 1px solid var(--border-default);
+        }
+        .algo-inner {
+            max-width: 900px; margin: 0 auto;
+            display: flex; align-items: center; gap: 3rem;
+        }
+        .algo-badge {
+            display: inline-block; padding: 0.3rem 0.75rem; border-radius: 4px;
+            background: rgba(212, 168, 67, 0.12); color: var(--gold);
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 0.75rem;
+        }
+        .algo-content h3 {
+            font-family: 'Oswald', sans-serif; font-size: 1.6rem;
+            color: var(--text-primary); margin-bottom: 0.75rem;
+        }
+        .algo-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .algo-stats {
+            display: flex; gap: 2rem; margin-top: 1rem;
+        }
+        .algo-stat-val {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.3rem;
+            color: var(--gold); font-weight: 600; display: block;
+        }
+        .algo-stat-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .algo-icon { font-size: 5rem; flex-shrink: 0; opacity: 0.8; }
+
+        /* ── Numbers ── */
+        .numbers { padding: 5rem 2rem; background: var(--bg-primary); text-align: center; }
+        .numbers-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem; margin-top: 2rem;
+        }
+        .number-item { padding: 2rem; }
+        .number-value {
+            font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 700;
+            color: var(--green-primary); display: block; margin-bottom: 0.5rem;
+        }
+        .number-label { color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+        /* ── Final CTA ── */
+        .final-cta {
+            padding: 5rem 2rem; background: var(--bg-abyss); text-align: center;
+            position: relative;
+        }
+        .final-cta::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 100%, rgba(34,197,94,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .final-cta h2 {
+            font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700;
+            margin-bottom: 1rem; color: var(--text-primary); position: relative;
+        }
+        .final-cta p {
+            font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2.5rem; position: relative;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+        /* ── Footer ── */
+        .footer {
+            background: var(--bg-primary); border-top: 1px solid var(--border-default);
+            padding: 2rem; text-align: center;
         }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--green-primary); }
+        .footer-disclaimer { color: var(--text-muted); font-size: 0.8rem; max-width: 800px; margin: 0 auto; line-height: 1.5; }
 
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+        /* ── Animations ── */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        .footer-links a:hover {
-            color: var(--green-primary);
-        }
-
-        .footer-disclaimer {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .pulse-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--green-primary);
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.2); }
-        }
-
-        /* Mobile Responsive */
+        /* ── Mobile ── */
         @media (max-width: 768px) {
-            .nav {
-                position: static;
-            }
-
-            .signal-ticker {
-                margin-top: 0;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .hero, .products, .social-proof, .missing-section, .numbers, .founding, .final-cta {
-                padding: 3rem 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .nav { position: static; }
+            .nav-links { display: none; }
+            .hero { min-height: auto; padding: 5rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .algo-inner { flex-direction: column; text-align: center; }
+            .algo-icon { display: none; }
+            .algo-stats { justify-content: center; }
+            .community, .courses, .social-proof, .numbers, .final-cta, .algo-section { padding: 3rem 1rem; }
+            .section-title { font-size: 2rem; }
+            .courses-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav class="nav">
         <div class="nav-container">
             <a href="index.html" class="logo">WOLVES OF WALL STREET</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="#courses">Courses</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-            <a href="https://discord.gg/wolves" class="nav-cta">Join the Pack</a>
+            <a href="https://discord.gg/nAFMc9d8ag" class="nav-cta">Join Free</a>
         </div>
     </nav>
 
-    <!-- ticker removed -->
-
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-container">
-            <h1>Stop Trading Alone</h1>
-            <p class="hero-subtitle">Join 13,000+ traders who've found their edge in the pack. Real signals. Real transparency. Real results.</p>
-            
+            <div class="hero-badge"><span class="pulse-dot"></span> 13,000+ traders in the pack</div>
+            <h1>Learn the Strats.<br/>Get the Payouts.</h1>
+            <p class="hero-subtitle">Free community. Live callouts. Proven NQ & SPX courses that have generated $15K+ payouts for members. No guru BS — just real strategies that work.</p>
+            <div class="hero-ctas">
+                <a href="https://discord.gg/nAFMc9d8ag" class="btn-primary">Join the Pack — It's Free</a>
+                <a href="#courses" class="btn-secondary">View Courses</a>
+            </div>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <span class="stat-number">$2.4M+</span>
-                    <span class="stat-label">Member Profits</span>
+                    <span class="stat-number">13K+</span>
+                    <span class="stat-label">Members</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="stat-number">68%</span>
-                    <span class="stat-label">Win Rate</span>
+                    <span class="stat-number">$15K+</span>
+                    <span class="stat-label">Top Member Payouts</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="stat-number">18</span>
+                    <span class="stat-number">18+</span>
                     <span class="stat-label">Months Live</span>
                 </div>
             </div>
-            
-            <a href="pricing.html" class="hero-cta">Find Your Edge</a>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products fade-up">
+    <!-- Free Community -->
+    <section class="community fade-up">
         <div class="section-container">
-            <h2 class="section-title">Three Ways to Hunt</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <h3 class="product-title">SPX Options</h3>
-                    <p class="product-desc">High-probability 0DTE and weekly plays on the S&P 500. Our bread and butter.</p>
-                    <ul class="product-features">
-                        <li>Live entry and exit alerts</li>
-                        <li>Risk management guidance</li>
-                        <li>Market context explanations</li>
-                        <li>Performance tracking</li>
-                    </ul>
+            <h2 class="section-title">What You Get for Free</h2>
+            <p class="section-subtitle">No paywall to join. The Discord is completely free — always has been.</p>
+            <div class="community-grid">
+                <div class="community-card">
+                    <span class="free-tag">Free</span>
+                    <div class="community-icon">📡</div>
+                    <h3>Live Callouts</h3>
+                    <p>Real-time NQ and SPX trade callouts from Ryan and the team during market hours.</p>
                 </div>
-                
-                <div class="product-card">
-                    <h3 class="product-title">NQ Futures</h3>
-                    <p class="product-desc">Scalp the Nasdaq with precision timing and clear risk parameters.</p>
-                    <ul class="product-features">
-                        <li>Intraday momentum plays</li>
-                        <li>Support/resistance levels</li>
-                        <li>Volume confirmation</li>
-                        <li>Quick profit targets</li>
-                    </ul>
+                <div class="community-card">
+                    <span class="free-tag">Free</span>
+                    <div class="community-icon">🎥</div>
+                    <h3>Live Kick Streams</h3>
+                    <p>Watch Ryan trade live, explain setups, and break down price action in real time.</p>
                 </div>
-                
-                <div class="product-card">
-                    <h3 class="product-title">Algo Signals</h3>
-                    <p class="product-desc">Machine learning edge powered by The Strategy Factory. Data-driven entries.</p>
-                    <ul class="product-features">
-                        <li>Algorithmic pattern recognition</li>
-                        <li>Backtested strategies</li>
-                        <li>Automated signal generation</li>
-                        <li>TSF partnership exclusive</li>
-                    </ul>
+                <div class="community-card">
+                    <span class="free-tag">Free</span>
+                    <div class="community-icon">🐺</div>
+                    <h3>The Pack</h3>
+                    <p>13,000+ traders sharing ideas, setups, and wins. A community that actually helps each other.</p>
+                </div>
+                <div class="community-card">
+                    <span class="free-tag">Free</span>
+                    <div class="community-icon">📊</div>
+                    <h3>Daily Analysis</h3>
+                    <p>Market analysis, key levels, and trade recaps posted daily so you're always prepared.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof -->
+    <!-- Courses -->
+    <section class="courses fade-up" id="courses">
+        <div class="section-container">
+            <h2 class="section-title">The Strats</h2>
+            <p class="section-subtitle">The courses members are using to pass their evals and pull payouts.</p>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-instrument">$NQ — NASDAQ FUTURES</div>
+                    <h3>NQ Strat Course</h3>
+                    <div class="course-price">$250</div>
+                    <div class="course-price-note">One-time purchase · Lifetime access</div>
+                    <p class="course-desc">The full NQ playbook. Focused on strat setups, entries, price action, and the psychology behind why Ryan enters — not just how.</p>
+                    <ul class="course-features">
+                        <li>Complete video presentation on the NQ Strat</li>
+                        <li>6 videos per strat + futures basics</li>
+                        <li>Position sizing & TP/SL management</li>
+                        <li>Strat 0 (EMA) · Strat 1 (SMS) · Strat 2 · Strat 3</li>
+                        <li>Price action, entries & risk psychology</li>
+                    </ul>
+                    <a href="https://discord.gg/nAFMc9d8ag" class="course-cta">DM @ryanstrading on Discord</a>
+                </div>
+                <div class="course-card">
+                    <div class="course-instrument">$SPX — S&P 500 OPTIONS</div>
+                    <h3>SPX Live Class</h3>
+                    <div class="course-price">$150</div>
+                    <div class="course-price-note">One-time purchase · 2-hour recording</div>
+                    <p class="course-desc">Deep dive into Ryan's main 0DTE strategy. Not how to enter — but <em>why</em> to enter. Price action, candle signals, and the reads that matter.</p>
+                    <ul class="course-features">
+                        <li>Strat 0 (EMA / VWAP) — Ryan's main entry strat</li>
+                        <li>Full FOMC week trade recaps with entries & exits</li>
+                        <li>PA analysis on $SPY</li>
+                        <li>When to enter vs. when to sit out</li>
+                        <li>Candle signals & live Q&A</li>
+                    </ul>
+                    <a href="https://discord.gg/nAFMc9d8ag" class="course-cta">DM @ryanstrading on Discord</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
     <section class="social-proof fade-up">
         <div class="section-container">
             <h2 class="section-title">The Pack Speaks</h2>
+            <p class="section-subtitle">Real messages from the Discord. No edits. No actors.</p>
             <div class="carousel-wrapper">
                 <div class="testimonials" id="testimonialTrack">
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">R</div>
-                            <div>
-                                <div class="testimonial-name">Richard</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">Richard</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"Ryan's mentorship has truly helped guide me through my first months trading. The NQ strat is well worth it since it shows solid advice and 1-on-1 guidance on tracking methods. Thanks to him I've had my fair share of payouts."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">T</div>
-                            <div>
-                                <div class="testimonial-name">Tyler</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">Tyler</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"Ryan and King Henny's NQ course actually changed my life. I've been trading for 5 months and his strategies have made me over $10,000 in payouts. Everything is super easy to understand. I would purchase this course 100 times over again."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">L</div>
-                            <div>
-                                <div class="testimonial-name">lilsham25</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">lilsham25</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"I've been trading for a little over a year and already made over 15K in payouts. I went from broke college student who had to ask their parents for money to being able to provide for myself. I am truly grateful."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">O</div>
-                            <div>
-                                <div class="testimonial-name">OvoxoAlpha</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">OvoxoAlpha</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"I've been keeping up with Ryan for the past year and a half and the NQ course is definitely his best work yet. The course was the best investment for myself — it really got the ball rolling for my accounts."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">I</div>
-                            <div>
-                                <div class="testimonial-name">ItsRiskAlert</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">ItsRiskAlert</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"I am forever grateful. They showed me a life-changing perspective. This strat has taught me to be consistent and disciplined not just in trading but also mentally. Thank you guys ❤️"</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">C</div>
-                            <div>
-                                <div class="testimonial-name">coalton</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">coalton</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"I've been learning from Ryan for over a year and now having access to the official NQ strat is genuinely such an incredible resource. It can change your life 🚀"</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">G</div>
-                            <div>
-                                <div class="testimonial-name">gian</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">gian</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"Switched to futures about three weeks ago, learned Ryan's strategy and passed my combine. The strategy is super simple and easy to follow. I'm feeling more confident every day."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">C</div>
-                            <div>
-                                <div class="testimonial-name">carseats</div>
-                                <div class="testimonial-role">December 2025</div>
-                            </div>
+                            <div><div class="testimonial-name">carseats</div><div class="testimonial-role">December 2025</div></div>
                         </div>
                         <p class="testimonial-text">"I've been trading options on and off since 2019 but never had a profitable year. After studying Ryan's SPX class I never looked back. 2025 was profitable and I'm so happy I found you fr!!"</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">M</div>
-                            <div>
-                                <div class="testimonial-name">MJ</div>
-                                <div class="testimonial-role">January 2026</div>
-                            </div>
+                            <div><div class="testimonial-name">MJ</div><div class="testimonial-role">January 2026</div></div>
                         </div>
                         <p class="testimonial-text">"This NQ strat is the shit 🔥 I just made $1,500 today shorting NQ. If you ain't on that game you're missing out."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">U</div>
-                            <div>
-                                <div class="testimonial-name">UⓂER</div>
-                                <div class="testimonial-role">January 2026</div>
-                            </div>
+                            <div><div class="testimonial-name">UⓂER</div><div class="testimonial-role">January 2026</div></div>
                         </div>
                         <p class="testimonial-text">"Purchased the strat on Jan 6th and paper traded it. After becoming profitable, I transitioned to live. Apex account purchased on the 13th, passed the eval on the 14th."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">H</div>
-                            <div>
-                                <div class="testimonial-name">hunter</div>
-                                <div class="testimonial-role">February 2026</div>
-                            </div>
+                            <div><div class="testimonial-name">hunter</div><div class="testimonial-role">February 2026</div></div>
                         </div>
                         <p class="testimonial-text">"First week on TopStep funded, first payout with the strat. Huge thanks to Ryan and Henny who created an awesome course to help me build a strategy and take trades on my own! Also just hit my first $5K day!! LFGGG"</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">U</div>
-                            <div>
-                                <div class="testimonial-name">Unii</div>
-                                <div class="testimonial-role">February 2026</div>
-                            </div>
+                            <div><div class="testimonial-name">Unii</div><div class="testimonial-role">February 2026</div></div>
                         </div>
                         <p class="testimonial-text">"7 months later I finally got my 2nd payout thanks to the strat 🐺"</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">G</div>
-                            <div>
-                                <div class="testimonial-name">gian</div>
-                                <div class="testimonial-role">February 2026</div>
-                            </div>
+                            <div><div class="testimonial-name">gian</div><div class="testimonial-role">February 2026</div></div>
                         </div>
                         <p class="testimonial-text">"Started trading futures 3 months ago with Ryan's strat, passed my first XFA, got 3 payouts — 1 from last month, 2 this February. Been a really good journey."</p>
                     </div>
                     <div class="testimonial">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">S</div>
-                            <div>
-                                <div class="testimonial-name">Sean</div>
-                                <div class="testimonial-role">March 2026</div>
-                            </div>
+                            <div><div class="testimonial-name">Sean</div><div class="testimonial-role">March 2026</div></div>
                         </div>
                         <p class="testimonial-text">"Definitely worth the $. I trade EMAs w/ Orderflow. King Henny and Ryan go in-depth to help newbies understand — definitely a good system for people new or old to trading."</p>
                     </div>
                 </div>
             </div>
-            <!-- controls removed -->
         </div>
     </section>
 
-    <!-- What You're Missing -->
-    <section class="missing-section fade-up">
-        <div class="section-container">
-            <h2 class="section-title">What You're Missing Right Now</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Members saw these signals 2 hours ago. Some are up $1,200+.</p>
-            
-            <div class="missing-cards">
-                <div class="missing-card">
-                    <h4>SPX 5050P Entry</h4>
-                    <p>Target: $15.50<br/>Stop: $11.20<br/>Size: 2-3 contracts</p>
-                    <div class="missing-lock">🔒</div>
-                </div>
-                
-                <div class="missing-card">
-                    <h4>NQ Long 17,825</h4>
-                    <p>Target: 17,850<br/>Stop: 17,810<br/>1:2 R/R ratio</p>
-                    <div class="missing-lock">🔒</div>
-                </div>
-                
-                <div class="missing-card">
-                    <h4>ALGO Signal #A47</h4>
-                    <p>Mean reversion play<br/>78% historical win rate<br/>TSF confidence: High</p>
-                    <div class="missing-lock">🔒</div>
+    <!-- Algo Signals (subtle) -->
+    <section class="algo-section fade-up">
+        <div class="algo-inner">
+            <div class="algo-icon">⚡</div>
+            <div class="algo-content">
+                <span class="algo-badge">Coming Soon</span>
+                <h3>Algo Signals — Powered by The Strategy Factory</h3>
+                <p>Machine-learning driven trade signals built on 2+ years of backtested data. Automated entries for NQ, GC, and Silver — built to complement the manual strats.</p>
+                <div class="algo-stats">
+                    <div>
+                        <span class="algo-stat-val">2+ Years</span>
+                        <span class="algo-stat-label">Backtested</span>
+                    </div>
+                    <div>
+                        <span class="algo-stat-val">3 Markets</span>
+                        <span class="algo-stat-label">NQ · GC · SIL</span>
+                    </div>
                 </div>
             </div>
-            
-            <a href="pricing.html" class="unlock-cta">Unlock the Den</a>
         </div>
     </section>
 
     <!-- Numbers -->
     <section class="numbers fade-up">
         <div class="section-container">
-            <h2 class="section-title">The Numbers Don't Lie</h2>
+            <h2 class="section-title">The Numbers</h2>
             <div class="numbers-grid">
                 <div class="number-item">
-                    <span class="number-value" data-target="13247">0</span>
+                    <span class="number-value" data-target="13000">0</span>
                     <span class="number-label">Pack Members</span>
-                </div>
-                <div class="number-item">
-                    <span class="number-value" data-target="340">0</span>
-                    <span class="number-label">Signals Per Month</span>
                 </div>
                 <div class="number-item">
                     <span class="number-value" data-target="18">0</span>
                     <span class="number-label">Months Running</span>
                 </div>
                 <div class="number-item">
-                    <span class="number-value" data-target="68">0</span>
-                    <span class="number-label">Win Rate %</span>
+                    <span class="number-value" data-target="2">0</span>
+                    <span class="number-label">Proven Courses</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value" data-target="0" data-prefix="$" data-suffix="+" data-display="$0+">$0+</span>
+                    <span class="number-label">Free to Join</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Founding Members -->
-    <section class="founding fade-up">
-        <div class="section-container">
-            <h2 class="section-title">Founding Member Pricing</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Lock in $79/month before we raise prices. Limited spots available.</p>
-            
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                <div class="progress-text">23 of 100 founding spots claimed</div>
-                <div class="urgency-text"><span class="pulse-dot"></span>77 spots remaining at this price</div>
-            </div>
-            
-            <a href="pricing.html" class="hero-cta">Lock In Founding Rate</a>
         </div>
     </section>
 
     <!-- Final CTA -->
     <section class="final-cta fade-up">
         <div class="section-container">
-            <h2>The Market Doesn't Wait</h2>
-            <p>Every day you trade alone is money left on the table. Join the pack that's already winning.</p>
-            <a href="pricing.html" class="hero-cta">Stop Trading Alone</a>
+            <h2>Stop Trading Alone</h2>
+            <p>The community is free. The courses pay for themselves. 13,000 traders already figured that out.</p>
+            <div class="hero-ctas">
+                <a href="https://discord.gg/nAFMc9d8ag" class="btn-primary">Join the Pack — Free</a>
+            </div>
         </div>
     </section>
 
@@ -1015,11 +643,9 @@
     <footer class="footer">
         <div class="footer-links">
             <a href="index.html">Home</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="#courses">Courses</a>
             <a href="about.html">About</a>
-            <a href="https://discord.gg/wolves">Discord</a>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
+            <a href="https://discord.gg/nAFMc9d8ag">Discord</a>
         </div>
         <div class="footer-disclaimer">
             <p><strong>Risk Disclaimer:</strong> Trading involves substantial risk and is not suitable for all investors. Past performance does not guarantee future results. You may lose all or more of your initial investment. Never trade with money you cannot afford to lose. This is not financial advice.</p>
@@ -1028,76 +654,50 @@
 
     <script>
         // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
-        });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
         // Counter animation
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const increment = target / 100;
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            if (target === 0) return; // skip the "$0+" one
+            const increment = target / 80;
             let current = 0;
-            
             const timer = setInterval(() => {
                 current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current).toLocaleString();
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = Math.floor(current).toLocaleString();
+                if (el.getAttribute('data-suffix')) el.textContent += el.getAttribute('data-suffix');
             }, 20);
         }
-
-        // Animate counters when in view
-        const counterObserver = new IntersectionObserver((entries) => {
+        const counterObs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('.number-value[data-target]');
-                    counters.forEach(counter => {
-                        if (!counter.classList.contains('animated')) {
-                            counter.classList.add('animated');
-                            animateCounter(counter);
-                        }
+                    entry.target.querySelectorAll('.number-value[data-target]').forEach(c => {
+                        if (!c.classList.contains('animated')) { c.classList.add('animated'); animateCounter(c); }
                     });
                 }
             });
         }, { threshold: 0.5 });
+        const ns = document.querySelector('.numbers');
+        if (ns) counterObs.observe(ns);
 
-        const numbersSection = document.querySelector('.numbers');
-        if (numbersSection) {
-            counterObserver.observe(numbersSection);
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
             });
         });
-    </script>
-    <script>
-    // Duplicate testimonials for seamless infinite scroll
-    (function() {
-        const track = document.getElementById('testimonialTrack');
-        const items = Array.from(track.children);
-        items.forEach(item => track.appendChild(item.cloneNode(true)));
-    })();
+
+        // Duplicate testimonials for infinite scroll
+        (function() {
+            const track = document.getElementById('testimonialTrack');
+            Array.from(track.children).forEach(item => track.appendChild(item.cloneNode(true)));
+        })();
     </script>
 </body>
 </html>
