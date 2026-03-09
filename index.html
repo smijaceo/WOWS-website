@@ -18,6 +18,9 @@
             --green-glow: rgba(0, 230, 118, 0.25);
             --gold: #ffd54f;
             --gold-dim: rgba(255, 213, 79, 0.1);
+            --cyan: #00A3FF;
+            --cyan-dim: rgba(0, 163, 255, 0.08);
+            --cyan-glow: rgba(0, 163, 255, 0.25);
             --blue: #5865F2;
             --blue-dim: rgba(88, 101, 242, 0.1);
             --white: #f5f5f5;
@@ -240,11 +243,11 @@
             display: flex; gap: 3rem; align-items: center;
             transition: border-color 0.3s;
         }
-        .tsf-card:hover { border-color: var(--gold); }
+        .tsf-card:hover { border-color: var(--cyan); }
         .tsf-content { flex: 1; }
         .tsf-badge {
             display: inline-block; padding: 0.3rem 0.75rem; border-radius: 4px;
-            background: var(--gold-dim); color: var(--gold);
+            background: var(--cyan-dim); color: var(--cyan);
             font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
             font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
             margin-bottom: 1rem;
@@ -259,7 +262,7 @@
         }
         .tsf-stat-val {
             font-family: 'JetBrains Mono', monospace; font-size: 1.2rem;
-            color: var(--gold); font-weight: 600;
+            color: var(--cyan); font-weight: 600;
         }
         .tsf-stat-label { font-size: 0.7rem; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 1px; }
         .tsf-tiers {
@@ -270,15 +273,15 @@
             border-radius: 8px; padding: 1rem 1.5rem; flex: 1; min-width: 140px;
         }
         .tsf-tier-name { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
-        .tsf-tier-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--gold); }
+        .tsf-tier-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--cyan); }
         .tsf-tier-note { font-size: 0.7rem; color: var(--gray-dark); }
         .tsf-cta {
             display: inline-block; margin-top: 1.5rem; padding: 0.75rem 2rem;
-            background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(255,213,79,0.2);
+            background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,163,255,0.2);
             border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem;
             transition: all 0.25s;
         }
-        .tsf-cta:hover { background: var(--gold); color: var(--black); }
+        .tsf-cta:hover { background: var(--cyan); color: var(--black); }
         .tsf-visual {
             flex-shrink: 0; width: 200px; height: 200px;
             display: flex; align-items: center; justify-content: center;
@@ -286,7 +289,7 @@
         }
         .tsf-glow {
             position: absolute; width: 200px; height: 200px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,213,79,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0,163,255,0.1) 0%, transparent 70%);
             filter: blur(40px); animation: orb-breathe 6s ease-in-out infinite;
         }
         .tsf-icon { font-size: 5rem; position: relative; z-index: 1; }
@@ -554,13 +557,14 @@
     <div class="tsf-inner">
         <div class="tsf-card">
             <div class="tsf-content">
-                <span class="tsf-badge">Partner Service</span>
+                <span class="tsf-badge">Partner Service · Launching March 16</span>
                 <h3>ALGO SIGNALS — THE STRATEGY FACTORY</h3>
-                <p>Automated, backtested trade signals for NQ, Gold, and Silver futures. Built on 2+ years of data and machine learning — designed to complement the manual strats or run on their own.</p>
+                <p>Automated futures signals for NQ, Gold & Silver. Backtested across 2,163 trades with mechanical discipline — no emotions, no revenge trading. Designed to complement the manual strats or run standalone.</p>
                 <div class="tsf-stats">
-                    <div><div class="tsf-stat-val">2+ Years</div><div class="tsf-stat-label">Backtested</div></div>
-                    <div><div class="tsf-stat-val">3 Markets</div><div class="tsf-stat-label">NQ · GC · SIL</div></div>
-                    <div><div class="tsf-stat-val">1,900+</div><div class="tsf-stat-label">Trades Analyzed</div></div>
+                    <div><div class="tsf-stat-val">$580K</div><div class="tsf-stat-label">2-Year P&L</div></div>
+                    <div><div class="tsf-stat-val">1.76</div><div class="tsf-stat-label">Profit Factor</div></div>
+                    <div><div class="tsf-stat-val">56.3%</div><div class="tsf-stat-label">Win Rate</div></div>
+                    <div><div class="tsf-stat-val">2,163</div><div class="tsf-stat-label">Trades</div></div>
                 </div>
                 <div class="tsf-tiers">
                     <div class="tsf-tier">
