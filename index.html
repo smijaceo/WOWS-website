@@ -279,6 +279,28 @@
         /* SVG icons in cards */
         .free-card-icon svg { width: 24px; height: 24px; }
 
+        /* ══ WHY FREE ══ */
+        .why-free {
+            padding: 5rem 2.5rem; background: var(--surface);
+            border-top: 1px solid var(--gray-darker);
+            border-bottom: 1px solid var(--gray-darker);
+        }
+        .why-free-inner { max-width: 700px; margin: 0 auto; }
+        .why-free-quote {
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--white); margin-bottom: 2rem; letter-spacing: 1px;
+            position: relative; padding-left: 1.5rem;
+        }
+        .why-free-quote::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px; background: var(--green); border-radius: 2px;
+        }
+        .why-free-answer p {
+            color: var(--gray); font-size: 1.05rem; line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+        .why-free-answer p:last-child { margin-bottom: 0; }
+
         /* ══ COURSES ══ */
         .courses { padding: 6rem 2.5rem; background: var(--surface); }
         .courses-inner { max-width: 1280px; margin: 0 auto; }
@@ -479,7 +501,7 @@
             .proof-num { font-size: 1.6rem; }
             .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
 
-            .free-section, .courses, .testimonials-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
+            .free-section, .why-free, .courses, .testimonials-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
             .testimonials-header { padding: 0 1.25rem; margin-bottom: 1.5rem; }
             .section-heading { font-size: 2rem; }
             .section-desc { font-size: 0.95rem; }
@@ -624,6 +646,18 @@
                 <h3>The Pack</h3>
                 <p>13,000+ traders sharing setups, wins, and helping each other get better every day.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ WHY FREE ═══ -->
+<section class="why-free" id="whyfree">
+    <div class="why-free-inner">
+        <div class="why-free-quote">"If it's free, what's the catch?"</div>
+        <div class="why-free-answer">
+            <p>There isn't one. Ryan started this in 2021 out of his bedroom — just a guy who liked trading and wanted to share what he was learning. The community grew because people were actually making money, not because of some marketing funnel.</p>
+            <p>The Discord is free because that's how it started and that's how it stays. The courses exist for people who want to go deeper. That's the whole business model. No upsells. No "free trial" that expires. No bait and switch.</p>
+            <p><strong style="color:var(--white);">13,000+ people didn't join because of an ad. They joined because a friend told them it was real.</strong></p>
         </div>
     </div>
 </section>
@@ -797,7 +831,7 @@
 const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.style.opacity = 1, e.target.style.transform = 'translateY(0)'; });
 }, { threshold: 0.1 });
-document.querySelectorAll('.free-section, .courses, .testimonials-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
+document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.7s ease';
     obs.observe(el);
 });
