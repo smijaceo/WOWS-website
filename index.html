@@ -96,6 +96,51 @@
         }
         .join-btn:hover { box-shadow: 0 0 24px var(--green-glow); transform: translateY(-1px); }
 
+        /* Hamburger */
+        .hamburger {
+            display: none; background: none; border: none; cursor: pointer;
+            width: 32px; height: 24px; position: relative; z-index: 201;
+        }
+        .hamburger span {
+            display: block; position: absolute; left: 0; width: 100%; height: 2px;
+            background: var(--white); border-radius: 2px; transition: all 0.3s ease;
+        }
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .hamburger span:nth-child(3) { bottom: 0; }
+        .hamburger.active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(8, 8, 8, 0.97); backdrop-filter: blur(20px);
+            z-index: 200; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 1.5rem;
+            opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+        }
+        .mobile-menu.open { opacity: 1; pointer-events: all; }
+        .mobile-menu a {
+            font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+            letter-spacing: 3px; color: var(--white); text-decoration: none;
+            transform: translateY(20px); opacity: 0; transition: all 0.4s ease;
+        }
+        .mobile-menu.open a {
+            transform: translateY(0); opacity: 1;
+        }
+        .mobile-menu.open a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.open a:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu.open a:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu.open a:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu a:hover { color: var(--green); }
+        .mobile-menu .mobile-join {
+            background: var(--green); color: var(--black); padding: 0.9rem 2.5rem;
+            border-radius: 8px; font-weight: 700; font-size: 1.2rem;
+            letter-spacing: 2px; margin-top: 1rem;
+        }
+        .mobile-menu .mobile-join:hover { box-shadow: 0 0 30px var(--green-glow); }
+
         /* ══ HERO ══ */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
@@ -379,6 +424,8 @@
             nav { padding: 0.75rem 0; }
             .nav-inner { padding: 0 1rem; }
             .nav-link { display: none; }
+            .join-btn { display: none; }
+            .hamburger { display: block; }
             .wordmark { font-size: 1.1rem; letter-spacing: 2px; }
             .logo-img { height: 28px; }
             nav.scrolled .logo-img { height: 30px; }
@@ -447,9 +494,19 @@
             <a href="#courses" class="nav-link">Courses</a>
             <a href="about.html" class="nav-link">About</a>
             <a href="https://discord.gg/nAFMc9d8ag" class="join-btn">Join Free</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="#courses" class="mobile-nav-link">Courses</a>
+    <a href="about.html">About</a>
+    <a href="https://discord.gg/nAFMc9d8ag" class="mobile-join">Join Free</a>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -695,6 +752,23 @@ document.querySelectorAll('.free-section, .courses, .testimonials-section, .tsf-
     const t = document.getElementById('testimonialTrack');
     Array.from(t.children).forEach(c => t.appendChild(c.cloneNode(true)));
 })();
+// Mobile menu toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+// Close menu on link click
+mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    });
+});
+
 // Nav scroll — shrink to just logo
 const navEl = document.querySelector('nav');
 window.addEventListener('scroll', () => {
