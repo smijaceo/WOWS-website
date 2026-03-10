@@ -457,6 +457,35 @@
         }
         .tsf-icon { font-size: 5rem; position: relative; z-index: 1; }
 
+        /* ══ FAQ ══ */
+        .faq-section { padding: 5rem 2.5rem; background: var(--surface); border-top: 1px solid var(--gray-darker); }
+        .faq-inner { max-width: 750px; margin: 0 auto; }
+        .faq-list { margin-top: 2rem; }
+        .faq-item {
+            border-bottom: 1px solid var(--gray-darker);
+        }
+        .faq-q {
+            width: 100%; background: none; border: none; color: var(--white);
+            font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 600;
+            padding: 1.25rem 0; text-align: left; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: color 0.2s;
+        }
+        .faq-q:hover { color: var(--green); }
+        .faq-icon {
+            font-size: 1.3rem; color: var(--gray); transition: transform 0.3s ease;
+            flex-shrink: 0; margin-left: 1rem;
+        }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--green); }
+        .faq-a {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0;
+        }
+        .faq-item.open .faq-a {
+            max-height: 300px; padding-bottom: 1.25rem;
+        }
+        .faq-a p { color: var(--gray); font-size: 0.95rem; line-height: 1.7; }
+
         /* ══ SOCIALS ══ */
         .socials-section { padding: 5rem 2.5rem; text-align: center; }
         .socials-inner { max-width: 800px; margin: 0 auto; }
@@ -529,7 +558,7 @@
             .proof-num { font-size: 1.6rem; }
             .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
 
-            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
+            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
             .founders-grid { grid-template-columns: 1fr; }
             .founder-card { padding: 1.75rem; }
             .founder-avatar { width: 44px; height: 44px; font-size: 1.1rem; }
@@ -831,6 +860,44 @@
     </div>
 </section>
 
+<!-- ═══ FAQ ═══ -->
+<section class="faq-section" id="faq">
+    <div class="faq-inner">
+        <div class="section-eyebrow">Questions</div>
+        <h2 class="section-heading">Frequently Asked</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-q">Is the Discord really free?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>100%. No trial, no credit card, no catch. The community has been free since day one in 2021. You get access to live callouts, streams, daily analysis, and 13,000+ traders — all without paying a cent.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Do I need trading experience?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>Nope. We have complete beginners and multi-year veterans. The courses break everything down from the basics, and the community is genuinely helpful — no one's going to clown you for asking questions.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">What instruments do you trade?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>Primarily NQ (E-mini Nasdaq futures) and SPX (S&P 500 0DTE options). The algo signals also cover Gold and Silver futures. Most members trade on prop firm accounts through TopStep, Apex, and similar platforms.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">What's the difference between the free community and the paid courses?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>The free Discord gives you live callouts, streams, and community. The paid courses ($250 NQ, $150 SPX) teach you Ryan's actual strategies in-depth — the setups, entries, risk management, and the psychology behind every trade. One-time purchase, lifetime access.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">How is this different from other trading Discords?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>Most groups charge $50-200/month just to join. We're free. Most groups show screenshots — Ryan trades live on Kick where you watch in real time. Most groups disappear after 6 months — we've been running for 4+ years with 13,000+ members. The proof is in the longevity.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">How do I buy a course?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>Join the free Discord and DM @ryanstrading directly. He'll walk you through it. No sketchy checkout pages — everything goes through Discord so you can ask questions first.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Is this financial advice?<span class="faq-icon">+</span></button>
+                <div class="faq-a"><p>No. Nothing shared in the community or courses constitutes financial advice. We share strategies and educational content. Trading involves substantial risk — never trade with money you can't afford to lose. Always do your own due diligence.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ═══ STAY CONNECTED ═══ -->
 <section class="socials-section" id="socials">
     <div class="socials-inner">
@@ -888,7 +955,17 @@
 const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.style.opacity = 1, e.target.style.transform = 'translateY(0)'; });
 }, { threshold: 0.1 });
-document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+    });
+});
+
+document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.7s ease';
     obs.observe(el);
 });
