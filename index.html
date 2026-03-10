@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolves of Wall Street</title>
+    <title>Wolf of Wall Street</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -46,9 +46,23 @@
             max-width: 1280px; margin: 0 auto; padding: 0 2.5rem;
             display: flex; justify-content: space-between; align-items: center;
         }
+        .logo-wrap {
+            display: flex; align-items: center; gap: 0.6rem; text-decoration: none;
+        }
+        .logo-img {
+            height: 32px; width: auto; transition: all 0.3s ease;
+        }
         .wordmark {
             font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
             letter-spacing: 3px; color: var(--white); text-decoration: none;
+            transition: all 0.4s ease; overflow: hidden; white-space: nowrap;
+            max-width: 400px; opacity: 1;
+        }
+        nav.scrolled .wordmark {
+            max-width: 0; opacity: 0; margin: 0; padding: 0;
+        }
+        nav.scrolled .logo-img {
+            height: 36px;
         }
         .nav-right { display: flex; align-items: center; gap: 2rem; }
         .nav-link {
@@ -346,7 +360,9 @@
             nav { padding: 0.75rem 0; }
             .nav-inner { padding: 0 1rem; }
             .nav-link { display: none; }
-            .wordmark { font-size: 1.2rem; letter-spacing: 2px; }
+            .wordmark { font-size: 1.1rem; letter-spacing: 2px; }
+            .logo-img { height: 28px; }
+            nav.scrolled .logo-img { height: 30px; }
             .join-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
 
             .hero { min-height: 100svh; padding: 5.5rem 1.25rem 2.5rem; }
@@ -404,7 +420,10 @@
 
 <nav>
     <div class="nav-inner">
-        <a href="index.html" class="wordmark">WOLVES OF WALL STREET</a>
+        <a href="index.html" class="logo-wrap">
+            <img src="wolf-logo.svg" alt="Wolf Logo" class="logo-img">
+            <span class="wordmark">WOLF OF WALL STREET</span>
+        </a>
         <div class="nav-right">
             <a href="#courses" class="nav-link">Courses</a>
             <a href="about.html" class="nav-link">About</a>
@@ -636,7 +655,7 @@
 <!-- ═══ FOOTER ═══ -->
 <footer>
     <div class="footer-left">
-        <div class="footer-brand">WOLVES OF WALL STREET</div>
+        <div class="footer-brand">WOLF OF WALL STREET</div>
         <div class="footer-copy">© 2021–2026 · Est. June 2021</div>
         <div class="footer-copy" style="margin-top:0.25rem;">Founded by Ryan Douihech & Anish Ayyadevara</div>
     </div>
@@ -657,6 +676,12 @@ document.querySelectorAll('.free-section, .courses, .testimonials-section, .tsf-
     const t = document.getElementById('testimonialTrack');
     Array.from(t.children).forEach(c => t.appendChild(c.cloneNode(true)));
 })();
+// Nav scroll — shrink to just logo
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); });
 });
