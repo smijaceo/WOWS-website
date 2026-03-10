@@ -508,6 +508,48 @@
         .social-link:hover { border-color: var(--green); background: var(--surface-2); transform: translateY(-2px); }
         .social-link svg { width: 20px; height: 20px; flex-shrink: 0; }
 
+        /* ══ START TRADING ══ */
+        .trading-section { padding: 5rem 2.5rem; background: var(--surface); border-top: 1px solid var(--gray-darker); }
+        .trading-inner { max-width: 1280px; margin: 0 auto; }
+        .trading-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .trading-card {
+            background: var(--black); border: 1px solid var(--gray-darker);
+            border-radius: 16px; padding: 2.5rem; transition: border-color 0.3s;
+        }
+        .trading-card:hover { border-color: var(--green); }
+        .trading-logo { margin-bottom: 1.25rem; }
+        .trading-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        .discount-code { margin-bottom: 1.5rem; }
+        .code-label {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 2px; color: var(--gray);
+            display: block; margin-bottom: 0.5rem;
+        }
+        .code-box {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: rgba(0, 230, 118, 0.06); border: 1px solid rgba(0, 230, 118, 0.25);
+            border-radius: 8px; padding: 0.6rem 1rem; cursor: pointer;
+            transition: border-color 0.2s, background 0.2s; position: relative;
+        }
+        .code-box:hover { border-color: var(--green); background: rgba(0, 230, 118, 0.1); }
+        .code-text {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;
+            color: var(--green); font-weight: 600;
+        }
+        .code-copy { color: var(--gray); display: flex; }
+        .code-copied {
+            position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+            font-size: 0.75rem; color: var(--green); opacity: 0; transition: opacity 0.3s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .trading-cta {
+            display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+            font-weight: 600; color: var(--white); text-decoration: none;
+            padding: 0.7rem 1.5rem; border: 1px solid var(--gray-darker);
+            border-radius: 8px; transition: all 0.2s;
+        }
+        .trading-cta:hover { border-color: var(--green); color: var(--green); }
+
         /* ══ FINAL CTA ══ */
         .cta-final { padding: 8rem 2rem; text-align: center; position: relative; }
         .cta-final::before {
@@ -564,7 +606,10 @@
             .proof-num { font-size: 1.6rem; }
             .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
 
-            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
+            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .cta-final, .tsf-section, .socials-section, .trading-section { padding: 3.5rem 1.25rem; }
+            .trading-grid { grid-template-columns: 1fr; }
+            .trading-card { padding: 1.75rem; }
+            .code-copied { right: -10px; top: -20px; transform: none; }
             .founders-grid { grid-template-columns: 1fr; }
             .founder-card { padding: 1.75rem; }
             .founder-avatar { width: 56px; height: 56px; font-size: 1.1rem; }
@@ -938,6 +983,58 @@
     </div>
 </section>
 
+<!-- ═══ START TRADING ═══ -->
+<section class="trading-section" id="start-trading">
+    <div class="trading-inner">
+        <div class="section-eyebrow">Partner Platforms</div>
+        <h2 class="section-heading">Start Trading Today</h2>
+        <p class="section-desc">Use code <span style="color:var(--green);font-family:'JetBrains Mono',monospace;">@ryanstrading</span> at checkout for a discount on your evaluation.</p>
+        <div class="trading-grid">
+            <div class="trading-card">
+                <div class="trading-logo">
+                    <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="160" height="32">
+                        <text x="0" y="24" font-family="'DM Sans', sans-serif" font-weight="700" font-size="24" fill="white" letter-spacing="2">LUCID</text>
+                        <text x="88" y="24" font-family="'DM Sans', sans-serif" font-weight="400" font-size="24" fill="#888" letter-spacing="2">Trading</text>
+                    </svg>
+                </div>
+                <p class="trading-desc">Top-rated futures prop firm. Fast payouts, clear rules, and evaluations starting under $100. Trusted by thousands of traders.</p>
+                <div class="discount-code">
+                    <span class="code-label">Discount Code</span>
+                    <div class="code-box" onclick="navigator.clipboard.writeText('@ryanstrading');this.querySelector('.code-copied').style.opacity=1;setTimeout(()=>this.querySelector('.code-copied').style.opacity=0,1500)">
+                        <span class="code-text">@ryanstrading</span>
+                        <span class="code-copy">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        </span>
+                        <span class="code-copied">Copied!</span>
+                    </div>
+                </div>
+                <a href="https://lucidtrading.com" target="_blank" class="trading-cta">Get Started →</a>
+            </div>
+            <div class="trading-card">
+                <div class="trading-logo">
+                    <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="160" height="32">
+                        <text x="0" y="24" font-family="'DM Sans', sans-serif" font-weight="700" font-size="24" fill="white" letter-spacing="1">α</text>
+                        <text x="22" y="24" font-family="'DM Sans', sans-serif" font-weight="700" font-size="20" fill="white" letter-spacing="2">ALPHA</text>
+                        <text x="92" y="24" font-family="'DM Sans', sans-serif" font-weight="400" font-size="20" fill="#888" letter-spacing="1">Capital</text>
+                    </svg>
+                </div>
+                <p class="trading-desc">Accounts up to $200K with 80% profit splits. Zero commission on all trades. Running strong since 2021.</p>
+                <div class="discount-code">
+                    <span class="code-label">Discount Code</span>
+                    <div class="code-box" onclick="navigator.clipboard.writeText('@ryanstrading');this.querySelector('.code-copied').style.opacity=1;setTimeout(()=>this.querySelector('.code-copied').style.opacity=0,1500)">
+                        <span class="code-text">@ryanstrading</span>
+                        <span class="code-copy">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        </span>
+                        <span class="code-copied">Copied!</span>
+                    </div>
+                </div>
+                <a href="https://alphacapitalgroup.uk" target="_blank" class="trading-cta">Get Started →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ═══ FINAL CTA ═══ -->
 <section class="cta-final">
     <h2>STOP TRADING ALONE</h2>
@@ -971,7 +1068,7 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     });
 });
 
-document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
+document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .tsf-section, .socials-section, .trading-section, .cta-final').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.7s ease';
     obs.observe(el);
 });
