@@ -511,7 +511,7 @@
 <section class="hero">
     <div class="hero-orb"></div>
     <div class="hero-content">
-        <div class="hero-label"><span class="dot"></span> 13,000+ traders in the pack</div>
+        <div class="hero-label"><span class="dot"></span> <span id="liveCount">13,000+</span> traders in the pack · <span id="onlineCount"></span></div>
         <h1>LEARN THE STRATS.<br/><span class="green">GET THE PAYOUTS.</span></h1>
         <p class="hero-sub">A 100% free trading community with live callouts, streams, and daily analysis. Proven NQ & SPX courses that members use to pass evals and pull real money. No subscriptions. No hidden fees.</p>
         <div class="hero-actions">
@@ -520,7 +520,7 @@
         </div>
         <div class="hero-proof">
             <div class="proof-item">
-                <div class="proof-num">13,000+</div>
+                <div class="proof-num" id="liveCountStat">13,000+</div>
                 <div class="proof-label">Members</div>
             </div>
             <div class="proof-item">
@@ -773,6 +773,22 @@ const navEl = document.querySelector('nav');
 window.addEventListener('scroll', () => {
     navEl.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
+
+// Live Discord member count
+(async function() {
+    try {
+        const res = await fetch('https://discord.com/api/v9/invites/nAFMc9d8ag?with_counts=true');
+        const data = await res.json();
+        if (data.approximate_member_count) {
+            const count = data.approximate_member_count.toLocaleString();
+            document.getElementById('liveCount').textContent = count;
+            document.getElementById('liveCountStat').textContent = count;
+        }
+        if (data.approximate_presence_count) {
+            document.getElementById('onlineCount').textContent = data.approximate_presence_count.toLocaleString() + ' online now';
+        }
+    } catch(e) {}
+})();
 
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); });
