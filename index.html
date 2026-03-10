@@ -151,15 +151,51 @@
             height: 200px; background: linear-gradient(to bottom, transparent, var(--black));
             pointer-events: none;
         }
-        .hero-orb {
-            position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);
-            width: 600px; height: 600px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,230,118,0.07) 0%, transparent 70%);
-            filter: blur(80px); animation: orb-breathe 8s ease-in-out infinite; pointer-events: none;
+        /* Candlestick chart background */
+        .hero-candles {
+            position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: flex-end; gap: 18px;
+            opacity: 0.12; pointer-events: none; height: 60%;
         }
-        @keyframes orb-breathe {
-            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+        .candle {
+            display: flex; flex-direction: column; align-items: center;
+            animation: candle-rise 1.5s ease-out both;
+        }
+        .candle:nth-child(1) { animation-delay: 0.2s; }
+        .candle:nth-child(2) { animation-delay: 0.4s; }
+        .candle:nth-child(3) { animation-delay: 0.6s; }
+        .candle:nth-child(4) { animation-delay: 0.8s; }
+        .candle:nth-child(5) { animation-delay: 1.0s; }
+        .candle:nth-child(6) { animation-delay: 1.2s; }
+        .candle:nth-child(7) { animation-delay: 1.4s; }
+        .candle:nth-child(8) { animation-delay: 1.6s; }
+        .candle:nth-child(9) { animation-delay: 1.8s; }
+        .candle:nth-child(10) { animation-delay: 2.0s; }
+        .candle:nth-child(11) { animation-delay: 2.2s; }
+        .candle:nth-child(12) { animation-delay: 2.4s; }
+        .candle:nth-child(13) { animation-delay: 2.6s; }
+        .candle:nth-child(14) { animation-delay: 2.8s; }
+        .candle:nth-child(15) { animation-delay: 3.0s; }
+        @keyframes candle-rise {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .wick {
+            width: 2px; background: currentColor; border-radius: 1px;
+        }
+        .body {
+            width: 14px; border-radius: 2px; min-height: 8px;
+        }
+        .candle.bull { color: var(--green); }
+        .candle.bull .body { background: var(--green); }
+        .candle.bear { color: #ef4444; }
+        .candle.bear .body { background: #ef4444; }
+
+        /* Subtle float after entry */
+        .candle { animation: candle-rise 1.5s ease-out both, candle-float 4s ease-in-out 3.5s infinite; }
+        @keyframes candle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
         .hero-content { position: relative; z-index: 1; max-width: 800px; }
         .hero-label {
@@ -431,7 +467,9 @@
             .join-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
 
             .hero { min-height: 100svh; padding: 5.5rem 1.25rem 2.5rem; }
-            .hero-orb { width: 350px; height: 350px; }
+            .hero-candles { gap: 10px; opacity: 0.08; }
+            .candle .body { width: 10px; }
+            .candle .wick { width: 1.5px; }
             .hero-label { font-size: 0.7rem; margin-bottom: 1.5rem; padding: 0.35rem 0.85rem; }
             .hero h1 { font-size: 3.2rem; margin-bottom: 1.25rem; }
             .hero-sub { font-size: 1.05rem; margin-bottom: 2rem; }
@@ -509,7 +547,23 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-    <div class="hero-orb"></div>
+    <div class="hero-candles">
+        <div class="candle bull"><div class="wick" style="height:35px"></div><div class="body" style="height:80px"></div><div class="wick" style="height:15px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:20px"></div><div class="body" style="height:55px"></div><div class="wick" style="height:25px"></div></div>
+        <div class="candle bear"><div class="wick" style="height:18px"></div><div class="body" style="height:40px"></div><div class="wick" style="height:30px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:25px"></div><div class="body" style="height:95px"></div><div class="wick" style="height:10px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:40px"></div><div class="body" style="height:70px"></div><div class="wick" style="height:20px"></div></div>
+        <div class="candle bear"><div class="wick" style="height:15px"></div><div class="body" style="height:35px"></div><div class="wick" style="height:22px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:30px"></div><div class="body" style="height:110px"></div><div class="wick" style="height:8px"></div></div>
+        <div class="candle bear"><div class="wick" style="height:12px"></div><div class="body" style="height:45px"></div><div class="wick" style="height:28px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:22px"></div><div class="body" style="height:85px"></div><div class="wick" style="height:15px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:45px"></div><div class="body" style="height:60px"></div><div class="wick" style="height:12px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:18px"></div><div class="body" style="height:100px"></div><div class="wick" style="height:10px"></div></div>
+        <div class="candle bear"><div class="wick" style="height:20px"></div><div class="body" style="height:50px"></div><div class="wick" style="height:18px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:28px"></div><div class="body" style="height:120px"></div><div class="wick" style="height:6px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:15px"></div><div class="body" style="height:75px"></div><div class="wick" style="height:20px"></div></div>
+        <div class="candle bull"><div class="wick" style="height:35px"></div><div class="body" style="height:90px"></div><div class="wick" style="height:12px"></div></div>
+    </div>
     <div class="hero-content">
         <div class="hero-label"><span class="dot"></span> <span id="liveCount">13,000+</span> traders in the pack · <span id="onlineCount"></span></div>
         <h1>LEARN THE STRATS.<br/><span class="green">GET THE PAYOUTS.</span></h1>
