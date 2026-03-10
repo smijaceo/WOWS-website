@@ -365,6 +365,34 @@
         .t-date { font-size: 0.75rem; color: var(--gray-dark); }
         .t-text { color: var(--gray); font-size: 0.9rem; line-height: 1.65; font-style: italic; }
 
+        /* ══ FOUNDERS ══ */
+        .founders-section { padding: 5rem 2.5rem; }
+        .founders-inner { max-width: 1280px; margin: 0 auto; }
+        .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .founder-card {
+            background: var(--surface); border: 1px solid var(--gray-darker);
+            border-radius: 16px; padding: 2.5rem; display: flex; gap: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .founder-card:hover { border-color: var(--green); }
+        .founder-avatar {
+            width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+            background: var(--green-dim); border: 1px solid var(--gray-darker);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+            color: var(--green); letter-spacing: 1px;
+        }
+        .founder-name {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+            letter-spacing: 1px; margin-bottom: 0.15rem;
+        }
+        .founder-role {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            color: var(--green); text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+        .founder-bio { color: var(--gray); font-size: 0.92rem; line-height: 1.7; }
+
         /* ══ TSF SECTION ══ */
         .tsf-section {
             padding: 5rem 2.5rem;
@@ -501,7 +529,10 @@
             .proof-num { font-size: 1.6rem; }
             .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
 
-            .free-section, .why-free, .courses, .testimonials-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
+            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .cta-final, .tsf-section, .socials-section { padding: 3.5rem 1.25rem; }
+            .founders-grid { grid-template-columns: 1fr; }
+            .founder-card { padding: 1.75rem; }
+            .founder-avatar { width: 44px; height: 44px; font-size: 1.1rem; }
             .testimonials-header { padding: 0 1.25rem; margin-bottom: 1.5rem; }
             .section-heading { font-size: 2rem; }
             .section-desc { font-size: 0.95rem; }
@@ -733,6 +764,32 @@
     </div>
 </section>
 
+<!-- ═══ FOUNDERS ═══ -->
+<section class="founders-section">
+    <div class="founders-inner">
+        <div class="section-eyebrow">The founders</div>
+        <h2 class="section-heading">Who's Behind the Pack</h2>
+        <div class="founders-grid">
+            <div class="founder-card">
+                <div class="founder-avatar">R</div>
+                <div class="founder-info">
+                    <h3 class="founder-name">Ryan Douihech</h3>
+                    <div class="founder-role">Founder & Lead Trader</div>
+                    <p class="founder-bio">Bio coming soon.</p>
+                </div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-avatar">A</div>
+                <div class="founder-info">
+                    <h3 class="founder-name">Anish Ayyadevara</h3>
+                    <div class="founder-role">Co-Founder & COO, Studio23Labs</div>
+                    <p class="founder-bio">Entrepreneur, trader, and builder. Co-founded this community from the ground up and previously built and exited a financial education platform. Also runs Studio23Labs — developing custom software, AI systems, and automation tools for startups to large firms. The goal here is simple: share insights, build together, and help everyone level up in trading and business.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ═══ TSF ALGO SIGNALS ═══ -->
 <section class="tsf-section">
     <div class="tsf-inner">
@@ -831,7 +888,7 @@
 const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.style.opacity = 1, e.target.style.transform = 'translateY(0)'; });
 }, { threshold: 0.1 });
-document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
+document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .tsf-section, .socials-section, .cta-final').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.7s ease';
     obs.observe(el);
 });
