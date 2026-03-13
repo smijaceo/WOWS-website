@@ -342,6 +342,73 @@
         }
         .course-cta:hover { background: var(--green); color: var(--black); border-color: var(--green); }
 
+        /* ══ SALE ══ */
+        .nq-sale {
+            position: relative; overflow: hidden;
+            border-color: var(--green) !important;
+            box-shadow: 0 0 30px rgba(0, 230, 118, 0.08), inset 0 0 60px rgba(0, 230, 118, 0.03);
+        }
+        .nq-sale::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            animation: sale-glow 2s ease-in-out infinite;
+        }
+        @keyframes sale-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .sale-banner {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.5rem; gap: 1rem;
+        }
+        .sale-left { display: flex; align-items: center; gap: 0.75rem; }
+        .sale-badge {
+            background: var(--green); color: var(--black);
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-size: 0.75rem; letter-spacing: 2px; padding: 0.4rem 0.8rem;
+            border-radius: 5px; font-weight: 800; text-transform: uppercase;
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+            animation: badge-pulse 2s ease-in-out infinite;
+        }
+        @keyframes badge-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
+            50% { box-shadow: 0 0 12px 4px rgba(0, 230, 118, 0.15); }
+        }
+        .sale-label {
+            font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+            color: var(--white); font-weight: 600;
+        }
+        .sale-timer-box {
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .timer-block {
+            background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.2);
+            border-radius: 6px; padding: 0.3rem 0.5rem; text-align: center; min-width: 42px;
+        }
+        .timer-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
+            color: var(--green); font-weight: 700; display: block; line-height: 1;
+        }
+        .timer-label {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.5rem;
+            color: var(--gray); text-transform: uppercase; letter-spacing: 1px;
+        }
+        .timer-sep {
+            font-family: 'JetBrains Mono', monospace; font-size: 1rem;
+            color: rgba(0, 230, 118, 0.4); margin: 0 -0.1rem;
+        }
+        .course-price-old {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+            color: var(--gray); text-decoration: line-through; margin-right: 0.4rem;
+            opacity: 0.4;
+        }
+        .nq-sale .course-price { color: var(--green); }
+        .sale-expired .sale-banner { display: none; }
+        .sale-expired .course-price-old { display: none; }
+        .sale-expired .course-price { color: var(--white) !important; }
+        .sale-expired { border-color: var(--gray-darker) !important; box-shadow: none !important; }
+        .sale-expired::before { display: none; }
+
         /* ══ TESTIMONIALS ══ */
         .testimonials-section { padding: 6rem 0; overflow: hidden; max-width: 100vw; }
         .testimonials-header { padding: 0 2.5rem; max-width: 1280px; margin: 0 auto 2.5rem; }
@@ -607,6 +674,9 @@
             .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
 
             .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .cta-final, .tsf-section, .socials-section, .trading-section { padding: 3.5rem 1.25rem; }
+            .sale-banner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .timer-block { min-width: 36px; padding: 0.25rem 0.4rem; }
+            .timer-num { font-size: 0.95rem; }
             .trading-grid { grid-template-columns: 1fr; }
             .trading-card { padding: 1.75rem; }
             .code-copied { right: -10px; top: -20px; transform: none; }
@@ -782,11 +852,27 @@
         <h2 class="section-heading">The Strats</h2>
         <p class="section-desc">These are the courses people keep talking about in the testimonials. Buy once, keep forever.</p>
         <div class="courses-grid">
-            <div class="course">
+            <div class="course nq-sale">
+                <div class="sale-banner" id="saleBanner">
+                    <div class="sale-left">
+                        <span class="sale-badge">10% OFF</span>
+                        <span class="sale-label">Limited Time</span>
+                    </div>
+                    <div class="sale-timer-box">
+                        <div class="timer-block"><span class="timer-num" id="cd-days">--</span><span class="timer-label">Days</span></div>
+                        <span class="timer-sep">:</span>
+                        <div class="timer-block"><span class="timer-num" id="cd-hrs">--</span><span class="timer-label">Hrs</span></div>
+                        <span class="timer-sep">:</span>
+                        <div class="timer-block"><span class="timer-num" id="cd-mins">--</span><span class="timer-label">Min</span></div>
+                        <span class="timer-sep">:</span>
+                        <div class="timer-block"><span class="timer-num" id="cd-secs">--</span><span class="timer-label">Sec</span></div>
+                    </div>
+                </div>
                 <div class="course-tag">$NQ | Nasdaq Futures</div>
                 <h3>NQ STRAT COURSE</h3>
                 <div class="course-price-row">
-                    <span class="course-price">$250</span>
+                    <span class="course-price-old">$250</span>
+                    <span class="course-price">$225</span>
                     <span class="course-price-info">one-time · lifetime access</span>
                 </div>
                 <p class="course-desc">The full NQ playbook. Not just "buy here, sell here." Ryan walks through why he takes each trade and what he's looking at before he enters.</p>
@@ -1097,6 +1183,44 @@ const navEl = document.querySelector('nav');
 window.addEventListener('scroll', () => {
     navEl.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
+
+// NQ Sale Countdown - expires 11:59 PM EST Sunday 3/15/2026
+(function() {
+    const deadline = new Date('2026-03-16T04:59:00Z');
+    const card = document.querySelector('.nq-sale');
+    const els = {
+        days: document.getElementById('cd-days'),
+        hrs: document.getElementById('cd-hrs'),
+        mins: document.getElementById('cd-mins'),
+        secs: document.getElementById('cd-secs')
+    };
+    
+    function update() {
+        const diff = deadline - new Date();
+        
+        if (diff <= 0) {
+            if (card) {
+                card.classList.add('sale-expired');
+                const p = card.querySelector('.course-price');
+                if (p) p.textContent = '$250';
+            }
+            return;
+        }
+        
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        
+        if (els.days) els.days.textContent = String(d).padStart(2, '0');
+        if (els.hrs) els.hrs.textContent = String(h).padStart(2, '0');
+        if (els.mins) els.mins.textContent = String(m).padStart(2, '0');
+        if (els.secs) els.secs.textContent = String(s).padStart(2, '0');
+        
+        setTimeout(update, 1000);
+    }
+    update();
+})();
 
 // Live Discord member count
 (async function() {
