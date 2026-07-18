@@ -12,8 +12,8 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Wolves Of Wall Street">
     <meta property="og:description" content="Free trading community with 14,000+ members. Live NQ & SPX callouts, Kick streams, and proven courses that members use to pass evals and pull real payouts. Est. 2021.">
-    <meta property="og:url" content="https://wowswebsite.vercel.app">
-    <meta property="og:image" content="https://wowswebsite.vercel.app/og-image.png">
+    <meta property="og:url" content="https://www.wolvesofwallst.io">
+    <meta property="og:image" content="https://www.wolvesofwallst.io/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -21,14 +21,38 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Wolves Of Wall Street">
     <meta name="twitter:description" content="Free trading community with 14,000+ members. Live callouts, streams, and proven NQ & SPX courses. Est. 2021.">
-    <meta name="twitter:image" content="https://wowswebsite.vercel.app/og-image.png">
+    <meta name="twitter:image" content="https://www.wolvesofwallst.io/og-image.png">
 
     <!-- General Meta -->
     <meta name="description" content="Free trading community with 14,000+ members. Live NQ & SPX callouts, Kick streams, and proven courses. Est. 2021.">
+    <link rel="canonical" href="https://www.wolvesofwallst.io/">
     <meta name="theme-color" content="#080808">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FAQ rich results for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Is the Discord really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yeah. No trial, no credit card, nothing. It's been free since 2021. You get the callouts, the streams, the daily levels, all of it. Over 14,000 people are in there right now not paying a thing."}},
+        {"@type": "Question", "name": "Do I need trading experience?", "acceptedAnswer": {"@type": "Answer", "text": "Not at all. Plenty of people joined having never placed a trade. The courses start from scratch, and people in the Discord are actually cool about answering beginner questions."}},
+        {"@type": "Question", "name": "What instruments do you trade?", "acceptedAnswer": {"@type": "Answer", "text": "Mostly NQ (Nasdaq futures) and SPX (0DTE options on the S&P). A lot of members trade through prop firms like Topstep and Lucid."}},
+        {"@type": "Question", "name": "What's the difference between the free community and the paid courses?", "acceptedAnswer": {"@type": "Answer", "text": "Free gets you the callouts, streams, analysis, and the whole community. The courses ($250 NQ, $150 SPX) are for when you want to learn the actual strategies yourself. You buy it once and it's yours."}},
+        {"@type": "Question", "name": "How is this different from other trading Discords?", "acceptedAnswer": {"@type": "Answer", "text": "Most trading Discords charge $50-200 a month just to get in. This one's free. Ryan trades live on camera, and the community has been running since 2021."}},
+        {"@type": "Question", "name": "How do I buy a course?", "acceptedAnswer": {"@type": "Answer", "text": "Join the Discord (it's free) and DM @ryanstrading. He handles it directly. You can ask him whatever you want before you buy."}},
+        {"@type": "Question", "name": "Is this financial advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything here is educational. Trading is risky and you can lose money. Do your own research. We share what works for us, but your results are on you."}}
+      ]
+    }
+    </script>
+    <!-- Self-hosted fonts (was Google Fonts CDN) — fewer connections, faster first paint -->
+    <link rel="preload" href="fonts/BebasNeue-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/DMSans.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face { font-family: 'Bebas Neue'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/BebasNeue-400.woff2') format('woff2'); }
+        @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('fonts/DMSans.woff2') format('woff2'); }
+        @font-face { font-family: 'DM Sans'; font-style: italic; font-weight: 400; font-display: swap; src: url('fonts/DMSans-italic.woff2') format('woff2'); }
+        @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('fonts/JetBrainsMono.woff2') format('woff2'); }
+    </style>
     <style>
         :root {
             --black: #080808;
@@ -364,6 +388,12 @@
         .t-name { font-weight: 600; font-size: 0.9rem; }
         .t-date { font-size: 0.75rem; color: var(--gray-dark); }
         .t-text { color: var(--gray); font-size: 0.9rem; line-height: 1.65; font-style: italic; }
+        /* Optional screenshot inside a testimonial card:
+           <img class="t-shot" src="win-screenshot.png" alt="Discord payout post" loading="lazy"> */
+        .t-shot {
+            width: 100%; border-radius: 8px; margin-top: 0.85rem;
+            border: 1px solid var(--gray-darker); display: block;
+        }
 
         /* ══ FOUNDERS ══ */
         .founders-section { padding: 5rem 2.5rem; }
@@ -508,6 +538,64 @@
         .footer-copy { font-size: 0.75rem; color: var(--gray-dark); }
         .footer-disclaimer { font-size: 0.7rem; color: var(--gray-dark); max-width: 600px; line-height: 1.5; text-align: right; }
 
+        /* ══ LIVE BADGE ══ */
+        .live-badge {
+            display: none; align-items: center; gap: 0.4rem;
+            background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444; padding: 0.35rem 0.85rem; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+            text-decoration: none; text-transform: uppercase;
+        }
+        .live-badge.on { display: inline-flex; }
+        .live-badge .live-dot {
+            width: 7px; height: 7px; border-radius: 50%; background: #ef4444;
+            animation: pulse 1.2s infinite;
+        }
+        .live-badge:hover { background: rgba(239, 68, 68, 0.2); }
+
+        /* ══ WINS TICKER ══ */
+        .wins-bar {
+            overflow: hidden; border-top: 1px solid var(--gray-darker);
+            border-bottom: 1px solid var(--gray-darker); background: var(--surface);
+            padding: 0.65rem 0; max-width: 100vw;
+        }
+        .wins-track {
+            display: flex; gap: 3rem; width: max-content;
+            animation: marquee 55s linear infinite;
+        }
+        .wins-track:hover { animation-play-state: paused; }
+        .win-item {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+            color: var(--gray); white-space: nowrap; letter-spacing: 0.5px;
+        }
+        .win-item .win-who { color: var(--white); font-weight: 600; }
+        .win-item .win-what { color: var(--green); }
+
+        /* ══ HOW IT WORKS ══ */
+        .how-section { padding: 5rem 2.5rem; }
+        .how-inner { max-width: 1280px; margin: 0 auto; }
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
+        .how-step { position: relative; padding-left: 4.25rem; }
+        .how-num {
+            position: absolute; left: 0; top: 0;
+            font-family: 'JetBrains Mono', monospace; font-size: 1rem;
+            color: var(--green); background: var(--green-dim);
+            width: 3rem; height: 3rem; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-weight: 600;
+        }
+        .how-step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .how-step p { color: var(--gray); font-size: 0.92rem; line-height: 1.6; }
+
+        /* ══ STICKY MOBILE CTA ══ */
+        .sticky-cta {
+            display: none; position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 200;
+            background: var(--green); color: var(--black); text-align: center;
+            padding: 0.95rem; border-radius: 10px; text-decoration: none;
+            font-weight: 700; font-size: 0.95rem; box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 20px var(--green-glow);
+            transform: translateY(120%); transition: transform 0.35s ease;
+        }
+        .sticky-cta.show { transform: translateY(0); }
+
         /* ══ MOBILE ══ */
         @media (max-width: 900px) {
             .free-grid { grid-template-columns: 1fr 1fr; }
@@ -569,6 +657,11 @@
             .socials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
             .social-link { padding: 0.85rem 1rem; font-size: 0.85rem; }
 
+            .sticky-cta { display: block; }
+            .how-section { padding: 3.5rem 1.25rem; }
+            .how-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+            .live-badge { font-size: 0.65rem; padding: 0.3rem 0.65rem; }
+
             .cta-final h2 { font-size: 2.2rem; }
             .cta-final p { font-size: 0.95rem; }
 
@@ -587,6 +680,7 @@
             <span class="wordmark">WOLVES OF WALL STREET</span>
         </a>
         <div class="nav-right">
+            <a href="https://kick.com/ryanstrading" class="live-badge" id="liveBadge" target="_blank"><span class="live-dot"></span> Live on Kick</a>
             <a href="#courses" class="nav-link">Courses</a>
             <a href="#socials" class="nav-link">Socials</a>
             <a href="https://discord.gg/sGHTJEJfwz" class="join-btn">Join Free</a>
@@ -637,12 +731,51 @@
                 <div class="proof-label">Members</div>
             </div>
             <div class="proof-item">
-                <div class="proof-num">$20K+</div>
+                <div class="proof-num" data-count="20" data-prefix="$" data-suffix="K+">$20K+</div>
                 <div class="proof-label">Top Payout</div>
             </div>
             <div class="proof-item">
-                <div class="proof-num">5+</div>
+                <div class="proof-num" data-count="5" data-suffix="+">5+</div>
                 <div class="proof-label">Years Running</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ RECENT WINS TICKER ═══ -->
+<div class="wins-bar" aria-label="Recent member wins">
+    <div class="wins-track" id="winsTrack">
+        <span class="win-item"><span class="win-who">Tyler</span> — <span class="win-what">$10,000+ in payouts</span> in 5 months</span>
+        <span class="win-item"><span class="win-who">hunter</span> — <span class="win-what">first $5K day</span> on Topstep funded</span>
+        <span class="win-item"><span class="win-who">lilsham25</span> — <span class="win-what">$15K+ in payouts</span> in a year</span>
+        <span class="win-item"><span class="win-who">gian</span> — <span class="win-what">passed first XFA</span> · 3 payouts</span>
+        <span class="win-item"><span class="win-who">Umer</span> — <span class="win-what">passed eval</span> the day after buying</span>
+        <span class="win-item"><span class="win-who">MJ</span> — <span class="win-what">$1,500 day</span> shorting NQ</span>
+        <span class="win-item"><span class="win-who">carseats</span> — <span class="win-what">first profitable year</span> since 2019</span>
+        <span class="win-item"><span class="win-who">Richard</span> — <span class="win-what">real payouts</span> with the NQ strat</span>
+    </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how-section">
+    <div class="how-inner">
+        <div class="section-eyebrow">How it works</div>
+        <h2 class="section-heading">Three Steps. That's It.</h2>
+        <div class="how-grid">
+            <div class="how-step">
+                <div class="how-num">01</div>
+                <h3>Join the Discord</h3>
+                <p>Free, no card, no trial. You're in the same server as 14,000+ traders in under a minute.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">02</div>
+                <h3>Watch Ryan trade live</h3>
+                <p>Live callouts every market day and streams on Kick. See the chart, the entry, and the exit in real time.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">03</div>
+                <h3>Learn the strats when you're ready</h3>
+                <p>When you want the full playbook, the NQ and SPX courses break down exactly how Ryan trades. Buy once, keep forever.</p>
             </div>
         </div>
     </div>
@@ -777,7 +910,7 @@
         <h2 class="section-heading">Who's Behind the Pack</h2>
         <div class="founders-grid">
             <div class="founder-card">
-                <img class="founder-avatar" src="ryan-headshot.jpg" alt="Ryan Douihech">
+                <img class="founder-avatar" src="ryan-headshot.jpg" alt="Ryan Douihech" width="72" height="72" loading="lazy" decoding="async">
                 <div class="founder-info">
                     <h3 class="founder-name">Ryan Douihech</h3>
                     <div class="founder-role">Founder & Lead Trader</div>
@@ -785,7 +918,7 @@
                 </div>
             </div>
             <div class="founder-card">
-                <img class="founder-avatar" src="anish-headshot.jpg" alt="Anish Ayyadevara">
+                <img class="founder-avatar" src="anish-headshot.jpg" alt="Anish Ayyadevara" width="72" height="72" loading="lazy" decoding="async">
                 <div class="founder-info">
                     <h3 class="founder-name">Anish Ayyadevara</h3>
                     <div class="founder-role">Co-Founder & COO, Studio23Labs</div>
@@ -944,6 +1077,9 @@
     <a href="https://discord.gg/sGHTJEJfwz" class="btn-main">Join the Pack. It's Free</a>
 </section>
 
+<!-- Sticky mobile CTA -->
+<a href="https://discord.gg/sGHTJEJfwz" class="sticky-cta" id="stickyCta">Join the Pack — It's Free</a>
+
 <!-- ═══ FOOTER ═══ -->
 <footer>
     <div class="footer-left">
@@ -970,13 +1106,53 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     });
 });
 
-document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .socials-section, .trading-section, .cta-final').forEach(el => {
+document.querySelectorAll('.how-section, .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .socials-section, .trading-section, .cta-final').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.7s ease';
     obs.observe(el);
 });
 (function() {
     const t = document.getElementById('testimonialTrack');
     Array.from(t.children).forEach(c => t.appendChild(c.cloneNode(true)));
+})();
+// Wins ticker — duplicate items for seamless loop
+(function() {
+    const t = document.getElementById('winsTrack');
+    Array.from(t.children).forEach(c => t.appendChild(c.cloneNode(true)));
+})();
+
+// Count-up animation for hero stats
+function countUp(el, target, format, dur = 1400, from = 0) {
+    const start = performance.now();
+    function step(now) {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = format(Math.round(from + (target - from) * eased));
+        if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+document.querySelectorAll('.proof-num[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    countUp(el, target, v => pre + v + suf);
+});
+countUp(document.getElementById('liveCountStat'), 14000, v => v.toLocaleString() + '+');
+
+// Sticky mobile CTA — appears after scrolling past the hero
+(function() {
+    const cta = document.getElementById('stickyCta');
+    window.addEventListener('scroll', () => {
+        cta.classList.toggle('show', window.scrollY > window.innerHeight * 0.9);
+    }, { passive: true });
+})();
+
+// Live on Kick badge
+(async function() {
+    try {
+        const res = await fetch('/api/live');
+        const data = await res.json();
+        if (data.live) document.getElementById('liveBadge').classList.add('on');
+    } catch(e) {}
 })();
 // Mobile menu toggle
 const hamburger = document.getElementById('hamburger');
@@ -1007,9 +1183,11 @@ window.addEventListener('scroll', () => {
         const res = await fetch('https://discord.com/api/v9/invites/sGHTJEJfwz?with_counts=true');
         const data = await res.json();
         if (data.approximate_member_count) {
-            const count = data.approximate_member_count.toLocaleString();
-            document.getElementById('liveCount').textContent = count;
-            document.getElementById('liveCountStat').textContent = count;
+            const count = data.approximate_member_count;
+            document.getElementById('liveCount').textContent = count.toLocaleString();
+            setTimeout(() => {
+                countUp(document.getElementById('liveCountStat'), count, v => v.toLocaleString(), 600, 14000);
+            }, 1500);
         }
         if (data.approximate_presence_count) {
             document.getElementById('onlineCount').textContent = data.approximate_presence_count.toLocaleString() + ' online now';
@@ -1021,6 +1199,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); });
 });
 </script>
+<!-- Vercel Web Analytics — enable "Web Analytics" in the Vercel project dashboard to activate -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 
