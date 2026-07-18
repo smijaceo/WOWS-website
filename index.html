@@ -11,7 +11,7 @@
     <!-- Open Graph / Link Previews -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Wolves Of Wall Street">
-    <meta property="og:description" content="Free trading community with 13,000+ members. Live NQ & SPX callouts, Kick streams, and proven courses that members use to pass evals and pull real payouts. Est. 2021.">
+    <meta property="og:description" content="Free trading community with 14,000+ members. Live NQ & SPX callouts, Kick streams, and proven courses that members use to pass evals and pull real payouts. Est. 2021.">
     <meta property="og:url" content="https://wowswebsite.vercel.app">
     <meta property="og:image" content="https://wowswebsite.vercel.app/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -20,11 +20,11 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Wolves Of Wall Street">
-    <meta name="twitter:description" content="Free trading community with 13,000+ members. Live callouts, streams, and proven NQ & SPX courses. Est. 2021.">
+    <meta name="twitter:description" content="Free trading community with 14,000+ members. Live callouts, streams, and proven NQ & SPX courses. Est. 2021.">
     <meta name="twitter:image" content="https://wowswebsite.vercel.app/og-image.png">
 
     <!-- General Meta -->
-    <meta name="description" content="Free trading community with 13,000+ members. Live NQ & SPX callouts, Kick streams, and proven courses. Est. 2021.">
+    <meta name="description" content="Free trading community with 14,000+ members. Live NQ & SPX callouts, Kick streams, and proven courses. Est. 2021.">
     <meta name="theme-color" content="#080808">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,9 +40,6 @@
             --green-glow: rgba(0, 230, 118, 0.25);
             --gold: #ffd54f;
             --gold-dim: rgba(255, 213, 79, 0.1);
-            --cyan: #00A3FF;
-            --cyan-dim: rgba(0, 163, 255, 0.08);
-            --cyan-glow: rgba(0, 163, 255, 0.25);
             --blue: #5865F2;
             --blue-dim: rgba(88, 101, 242, 0.1);
             --white: #f5f5f5;
@@ -342,73 +339,6 @@
         }
         .course-cta:hover { background: var(--green); color: var(--black); border-color: var(--green); }
 
-        /* ══ SALE ══ */
-        .nq-sale {
-            position: relative; overflow: hidden;
-            border-color: var(--green) !important;
-            box-shadow: 0 0 30px rgba(0, 230, 118, 0.08), inset 0 0 60px rgba(0, 230, 118, 0.03);
-        }
-        .nq-sale::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, transparent, var(--green), transparent);
-            animation: sale-glow 2s ease-in-out infinite;
-        }
-        @keyframes sale-glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        .sale-banner {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 1.5rem; gap: 1rem;
-        }
-        .sale-left { display: flex; align-items: center; gap: 0.75rem; }
-        .sale-badge {
-            background: var(--green); color: var(--black);
-            font-family: 'DM Sans', -apple-system, sans-serif;
-            font-size: 0.75rem; letter-spacing: 2px; padding: 0.4rem 0.8rem;
-            border-radius: 5px; font-weight: 800; text-transform: uppercase;
-            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-            animation: badge-pulse 2s ease-in-out infinite;
-        }
-        @keyframes badge-pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
-            50% { box-shadow: 0 0 12px 4px rgba(0, 230, 118, 0.15); }
-        }
-        .sale-label {
-            font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
-            color: var(--white); font-weight: 600;
-        }
-        .sale-timer-box {
-            display: flex; align-items: center; gap: 0.4rem;
-        }
-        .timer-block {
-            background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.2);
-            border-radius: 6px; padding: 0.3rem 0.5rem; text-align: center; min-width: 42px;
-        }
-        .timer-num {
-            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
-            color: var(--green); font-weight: 700; display: block; line-height: 1;
-        }
-        .timer-label {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.5rem;
-            color: var(--gray); text-transform: uppercase; letter-spacing: 1px;
-        }
-        .timer-sep {
-            font-family: 'JetBrains Mono', monospace; font-size: 1rem;
-            color: rgba(0, 230, 118, 0.4); margin: 0 -0.1rem;
-        }
-        .course-price-old {
-            font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
-            color: var(--gray); text-decoration: line-through; margin-right: 0.4rem;
-            opacity: 0.4;
-        }
-        .nq-sale .course-price { color: var(--green); }
-        .sale-expired .sale-banner { display: none; }
-        .sale-expired .course-price-old { display: none; }
-        .sale-expired .course-price { color: var(--white) !important; }
-        .sale-expired { border-color: var(--gray-darker) !important; box-shadow: none !important; }
-        .sale-expired::before { display: none; }
-
         /* ══ TESTIMONIALS ══ */
         .testimonials-section { padding: 6rem 0; overflow: hidden; max-width: 100vw; }
         .testimonials-header { padding: 0 2.5rem; max-width: 1280px; margin: 0 auto 2.5rem; }
@@ -466,70 +396,6 @@
         }
         .founder-bio { color: var(--gray); font-size: 0.92rem; line-height: 1.7; }
 
-        /* ══ TSF SECTION ══ */
-        .tsf-section {
-            padding: 5rem 2.5rem;
-            background: var(--surface);
-            border-top: 1px solid var(--gray-darker);
-        }
-        .tsf-inner { max-width: 1280px; margin: 0 auto; }
-        .tsf-card {
-            background: var(--black); border: 1px solid var(--gray-darker);
-            border-radius: 16px; padding: 3rem;
-            display: flex; gap: 3rem; align-items: center;
-            transition: border-color 0.3s;
-        }
-        .tsf-card:hover { border-color: var(--cyan); }
-        .tsf-content { flex: 1; }
-        .tsf-badge {
-            display: inline-block; padding: 0.3rem 0.75rem; border-radius: 4px;
-            background: var(--cyan-dim); color: var(--cyan);
-            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
-            margin-bottom: 1rem;
-        }
-        .tsf-content h3 {
-            font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
-            letter-spacing: 1px; margin-bottom: 0.75rem;
-        }
-        .tsf-content p { color: var(--gray); line-height: 1.7; margin-bottom: 1.5rem; }
-        .tsf-stats {
-            display: flex; gap: 2.5rem; margin-bottom: 1.5rem;
-        }
-        .tsf-stat-val {
-            font-family: 'JetBrains Mono', monospace; font-size: 1.2rem;
-            color: var(--cyan); font-weight: 600;
-        }
-        .tsf-stat-label { font-size: 0.7rem; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 1px; }
-        .tsf-tiers {
-            display: flex; gap: 1rem; flex-wrap: wrap;
-        }
-        .tsf-tier {
-            background: var(--surface-2); border: 1px solid var(--gray-darker);
-            border-radius: 8px; padding: 1rem 1.5rem; flex: 1; min-width: 140px;
-        }
-        .tsf-tier-name { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
-        .tsf-tier-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--cyan); }
-        .tsf-tier-note { font-size: 0.7rem; color: var(--gray-dark); }
-        .tsf-cta {
-            display: inline-block; margin-top: 1.5rem; padding: 0.75rem 2rem;
-            background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,163,255,0.2);
-            border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem;
-            transition: all 0.25s;
-        }
-        .tsf-cta:hover { background: var(--cyan); color: var(--black); }
-        .tsf-visual {
-            flex-shrink: 0; width: 200px; height: 200px;
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .tsf-glow {
-            position: absolute; width: 200px; height: 200px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,163,255,0.1) 0%, transparent 70%);
-            filter: blur(40px); animation: orb-breathe 6s ease-in-out infinite;
-        }
-        .tsf-icon { font-size: 5rem; position: relative; z-index: 1; }
-
         /* ══ FAQ ══ */
         .faq-section { padding: 5rem 2.5rem; background: var(--surface); border-top: 1px solid var(--gray-darker); }
         .faq-inner { max-width: 750px; margin: 0 auto; }
@@ -563,11 +429,12 @@
         .socials-section { padding: 5rem 2.5rem; text-align: center; }
         .socials-inner { max-width: 800px; margin: 0 auto; }
         .socials-grid {
-            display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+            max-width: 640px; margin: 2rem auto 0;
         }
         .social-link {
-            display: flex; align-items: center; gap: 0.75rem;
-            padding: 1rem 1.75rem; background: var(--surface);
+            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+            padding: 1rem 1.25rem; background: var(--surface);
             border: 1px solid var(--gray-darker); border-radius: 10px;
             text-decoration: none; color: var(--white); font-weight: 600;
             font-size: 0.9rem; transition: all 0.25s;
@@ -578,7 +445,7 @@
         /* ══ START TRADING ══ */
         .trading-section { padding: 5rem 2.5rem; background: var(--surface); border-top: 1px solid var(--gray-darker); }
         .trading-inner { max-width: 1280px; margin: 0 auto; }
-        .trading-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .trading-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .trading-card {
             background: var(--black); border: 1px solid var(--gray-darker);
             border-radius: 16px; padding: 2.5rem 2.5rem 2rem; transition: border-color 0.3s;
@@ -645,9 +512,7 @@
         @media (max-width: 900px) {
             .free-grid { grid-template-columns: 1fr 1fr; }
             .courses-grid { grid-template-columns: 1fr; }
-            .tsf-card { flex-direction: column; }
-            .tsf-visual { width: 120px; height: 120px; }
-            .tsf-icon { font-size: 3.5rem; }
+            .trading-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             nav { padding: 0.75rem 0; }
@@ -673,10 +538,7 @@
             .proof-num { font-size: 1.6rem; }
             .proof-label { font-size: 0.65rem; letter-spacing: 1px; }
 
-            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .cta-final, .tsf-section, .socials-section, .trading-section { padding: 3.5rem 1.25rem; }
-            .sale-banner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-            .timer-block { min-width: 36px; padding: 0.25rem 0.4rem; }
-            .timer-num { font-size: 0.95rem; }
+            .free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .cta-final, .socials-section, .trading-section { padding: 3.5rem 1.25rem; }
             .trading-grid { grid-template-columns: 1fr; }
             .trading-card { padding: 1.75rem; }
             .code-copied { right: -10px; top: -20px; transform: none; }
@@ -704,14 +566,8 @@
             .t-card { width: 280px; padding: 1.25rem; }
             .t-text { font-size: 0.85rem; }
 
-            .tsf-card { padding: 2rem; }
-            .tsf-content h3 { font-size: 1.6rem; }
-            .tsf-stats { gap: 1.5rem; }
-            .tsf-tiers { flex-direction: column; }
-            .tsf-visual { display: none; }
-
-            .socials-grid { gap: 0.75rem; }
-            .social-link { padding: 0.85rem 1.25rem; font-size: 0.85rem; }
+            .socials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .social-link { padding: 0.85rem 1rem; font-size: 0.85rem; }
 
             .cta-final h2 { font-size: 2.2rem; }
             .cta-final p { font-size: 0.95rem; }
@@ -768,7 +624,7 @@
         <div class="candle bull"><div class="wick" style="height:35px"></div><div class="body" style="height:90px"></div><div class="wick" style="height:12px"></div></div>
     </div>
     <div class="hero-content">
-        <div class="hero-label"><span class="dot"></span> <span id="liveCount">13,000+</span> traders in the pack · <span id="onlineCount"></span></div>
+        <div class="hero-label"><span class="dot"></span> <span id="liveCount">14,000+</span> traders in the pack · <span id="onlineCount"></span></div>
         <h1>LEARN THE STRATS.<br/><span class="green">GET THE PAYOUTS.</span></h1>
         <p class="hero-sub">Free trading community. Live callouts every market day. Ryan trades on stream so you can watch in real time. Members are using the NQ and SPX courses to pass evals and pull real payouts. No monthly fees, no gimmicks.</p>
         <div class="hero-actions">
@@ -777,7 +633,7 @@
         </div>
         <div class="hero-proof">
             <div class="proof-item">
-                <div class="proof-num" id="liveCountStat">13,000+</div>
+                <div class="proof-num" id="liveCountStat">14,000+</div>
                 <div class="proof-label">Members</div>
             </div>
             <div class="proof-item">
@@ -825,7 +681,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="#00e676" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
                 <h3>The Pack</h3>
-                <p>13,000+ people in here. Some are brand new, some have been trading for years. Everyone helps each other out.</p>
+                <p>14,000+ people in here. Some are brand new, some have been trading for years. Everyone helps each other out.</p>
             </div>
         </div>
     </div>
@@ -838,7 +694,7 @@
         <div class="why-free-answer">
             <p>Ryan started WOWS in 2021. It wasn't a business plan. He was just trading and posting what he saw. People showed up because the calls were good. More people continued to show up, and it has only grown since launch.</p>
             <p>The Discord is free because that's how it started. The courses are for people who want the full strategy breakdown. That's it. No upsells, no "free trial" that turns into a bill, none of that.</p>
-            <p><strong style="color:var(--white);">13,000 people didn't join because of an ad. They joined because someone they knew told them it was legit.</strong></p>
+            <p><strong style="color:var(--white);">14,000 people didn't join because of an ad. They joined because someone they knew told them it was legit.</strong></p>
         </div>
     </div>
 </section>
@@ -852,27 +708,11 @@
         <h2 class="section-heading">The Strats</h2>
         <p class="section-desc">These are the courses people keep talking about in the testimonials. Buy once, keep forever.</p>
         <div class="courses-grid">
-            <div class="course nq-sale">
-                <div class="sale-banner" id="saleBanner">
-                    <div class="sale-left">
-                        <span class="sale-badge">10% OFF</span>
-                        <span class="sale-label">Limited Time</span>
-                    </div>
-                    <div class="sale-timer-box">
-                        <div class="timer-block"><span class="timer-num" id="cd-days">--</span><span class="timer-label">Days</span></div>
-                        <span class="timer-sep">:</span>
-                        <div class="timer-block"><span class="timer-num" id="cd-hrs">--</span><span class="timer-label">Hrs</span></div>
-                        <span class="timer-sep">:</span>
-                        <div class="timer-block"><span class="timer-num" id="cd-mins">--</span><span class="timer-label">Min</span></div>
-                        <span class="timer-sep">:</span>
-                        <div class="timer-block"><span class="timer-num" id="cd-secs">--</span><span class="timer-label">Sec</span></div>
-                    </div>
-                </div>
+            <div class="course">
                 <div class="course-tag">$NQ | Nasdaq Futures</div>
                 <h3>NQ STRAT COURSE</h3>
                 <div class="course-price-row">
-                    <span class="course-price-old">$250</span>
-                    <span class="course-price">$225</span>
+                    <span class="course-price">$250</span>
                     <span class="course-price-info">one-time · lifetime access</span>
                 </div>
                 <p class="course-desc">The full NQ playbook. Not just "buy here, sell here." Ryan walks through why he takes each trade and what he's looking at before he enters.</p>
@@ -889,7 +729,7 @@
                 <div class="course-tag">$SPX | S&P 500 Options</div>
                 <h3>SPX LIVE CLASS</h3>
                 <div class="course-price-row">
-                    <span class="course-price">$150</span>
+                    <span class="course-price" style="color:var(--white)">$150</span>
                     <span class="course-price-info">one-time · 2-hour recording</span>
                 </div>
                 <p class="course-desc">Two hours of Ryan breaking down his main 0DTE strat. Heavy on the price action reads and candle signals. The stuff that actually matters when you're staring at a chart.</p>
@@ -941,7 +781,7 @@
                 <div class="founder-info">
                     <h3 class="founder-name">Ryan Douihech</h3>
                     <div class="founder-role">Founder & Lead Trader</div>
-                    <p class="founder-bio">Former NCAA D1 runner turned full-time trader. MBA graduate. Been in the markets since 2020, moved into SPX and futures in 2024, and has pulled over $250K in payouts in the last two years. Started the Discord to share what was working, and it grew to 13,000+ people. Now he trades live on Kick, runs the community, and creates content around it. The track background isn't just for show. The discipline carries over.</p>
+                    <p class="founder-bio">Former NCAA D1 runner turned full-time trader. MBA graduate. Been in the markets since 2020, moved into SPX and futures in 2024, and has pulled over $250K in payouts in the last two years. Started the Discord to share what was working, and it grew to 14,000+ people. Now he trades live on Kick, runs the community, and creates content around it. The track background isn't just for show. The discipline carries over.</p>
                 </div>
             </div>
             <div class="founder-card">
@@ -956,47 +796,6 @@
     </div>
 </section>
 
-<!-- ═══ TSF ALGO SIGNALS ═══ -->
-<section class="tsf-section">
-    <div class="tsf-inner">
-        <div class="tsf-card">
-            <div class="tsf-content">
-                <span class="tsf-badge">Partner Service · Launching March 30</span>
-                <h3>ALGO SIGNALS | THE STRATEGY FACTORY</h3>
-                <p>Automated signals for NQ, Gold, and Silver futures. The algorithm doesn't revenge trade, doesn't get emotional, doesn't second-guess. 2,582 trades backtested. Works alongside the manual strats or on its own.</p>
-                <div class="tsf-stats">
-                    <div><div class="tsf-stat-val">$704K</div><div class="tsf-stat-label">2-Year P&L</div></div>
-                    <div><div class="tsf-stat-val">1.68</div><div class="tsf-stat-label">Profit Factor</div></div>
-                    <div><div class="tsf-stat-val">56.6%</div><div class="tsf-stat-label">Win Rate</div></div>
-                    <div><div class="tsf-stat-val">2,582</div><div class="tsf-stat-label">Trades</div></div>
-                </div>
-                <div class="tsf-tiers">
-                    <div class="tsf-tier">
-                        <div class="tsf-tier-name">Founding</div>
-                        <div class="tsf-tier-price">$79/mo</div>
-                        <div class="tsf-tier-note">Limited spots</div>
-                    </div>
-                    <div class="tsf-tier">
-                        <div class="tsf-tier-name">Standard</div>
-                        <div class="tsf-tier-price">$100/mo</div>
-                        <div class="tsf-tier-note">After founding</div>
-                    </div>
-                    <div class="tsf-tier">
-                        <div class="tsf-tier-name">Elite</div>
-                        <div class="tsf-tier-price">$249/mo</div>
-                        <div class="tsf-tier-note">Coming soon</div>
-                    </div>
-                </div>
-                <a href="https://thestrategyfactory.io" class="tsf-cta" target="_blank">Learn More at thestrategyfactory.io →</a>
-            </div>
-            <div class="tsf-visual">
-                <div class="tsf-glow"></div>
-                <div class="tsf-icon">⚡</div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- ═══ FAQ ═══ -->
 <section class="faq-section" id="faq">
     <div class="faq-inner">
@@ -1005,7 +804,7 @@
         <div class="faq-list">
             <div class="faq-item">
                 <button class="faq-q">Is the Discord really free?<span class="faq-icon">+</span></button>
-                <div class="faq-a"><p>Yeah. No trial, no credit card, nothing. It's been free since 2021. You get the callouts, the streams, the daily levels, all of it. Over 13,000 people are in there right now not paying a thing.</p></div>
+                <div class="faq-a"><p>Yeah. No trial, no credit card, nothing. It's been free since 2021. You get the callouts, the streams, the daily levels, all of it. Over 14,000 people are in there right now not paying a thing.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-q">Do I need trading experience?<span class="faq-icon">+</span></button>
@@ -1099,11 +898,10 @@
             <div class="trading-card">
                 <div class="trading-logo">
                     <svg viewBox="0 0 240 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="240" height="36">
-                        <text x="0" y="28" font-family="'Bebas Neue', sans-serif" font-size="30" fill="white" letter-spacing="3">ALPHA</text>
-                        <text x="82" y="28" font-family="'DM Sans', sans-serif" font-weight="400" font-size="22" fill="#666" letter-spacing="1">Futures</text>
+                        <text x="0" y="28" font-family="'Bebas Neue', sans-serif" font-size="30" fill="white" letter-spacing="3">TRADEIFY</text>
                     </svg>
                 </div>
-                <p class="trading-desc">Accounts up to $200K with 90/10 profit splits. Zero commission on all trades. Running strong since 2021.</p>
+                <p class="trading-desc">Futures prop firm with fast payouts and trader-friendly rules. Get funded and keep up to 90% of your profits.</p>
                 <div class="discount-code">
                     <span class="code-label">Discount Code</span>
                     <div class="code-box" onclick="navigator.clipboard.writeText('RYANSTRADING');this.querySelector('.code-copied').style.opacity=1;setTimeout(()=>this.querySelector('.code-copied').style.opacity=0,1500)">
@@ -1114,7 +912,26 @@
                         <span class="code-copied">Copied!</span>
                     </div>
                 </div>
-                <a href="https://www.alpha-futures.com" target="_blank" class="trading-cta">Get Started →</a>
+                <a href="https://tradeify.co/?ref=RYANSTRADING" target="_blank" class="trading-cta">Get Started →</a>
+            </div>
+            <div class="trading-card">
+                <div class="trading-logo">
+                    <svg viewBox="0 0 240 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="240" height="36">
+                        <text x="0" y="28" font-family="'Bebas Neue', sans-serif" font-size="30" fill="white" letter-spacing="3">TRADECOPIA</text>
+                    </svg>
+                </div>
+                <p class="trading-desc">Copy your trades across multiple funded accounts automatically. One entry, every account. Scale your payouts.</p>
+                <div class="discount-code">
+                    <span class="code-label">Discount Code</span>
+                    <div class="code-box" onclick="navigator.clipboard.writeText('RYANSTRADING');this.querySelector('.code-copied').style.opacity=1;setTimeout(()=>this.querySelector('.code-copied').style.opacity=0,1500)">
+                        <span class="code-text">RYANSTRADING</span>
+                        <span class="code-copy">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        </span>
+                        <span class="code-copied">Copied!</span>
+                    </div>
+                </div>
+                <a href="https://portal.tradecopia.com/signup-affiliate?via=RYANSTRADING" target="_blank" class="trading-cta">Get Started →</a>
             </div>
         </div>
     </div>
@@ -1123,7 +940,7 @@
 <!-- ═══ FINAL CTA ═══ -->
 <section class="cta-final">
     <h2>STOP TRADING ALONE</h2>
-    <p>The community costs nothing. The courses pay for themselves. 13,000 people figured that out already.</p>
+    <p>The community costs nothing. The courses pay for themselves. 14,000 people figured that out already.</p>
     <a href="https://discord.gg/sGHTJEJfwz" class="btn-main">Join the Pack. It's Free</a>
 </section>
 
@@ -1153,7 +970,7 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     });
 });
 
-document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .tsf-section, .socials-section, .trading-section, .cta-final').forEach(el => {
+document.querySelectorAll('.free-section, .why-free, .courses, .testimonials-section, .founders-section, .faq-section, .socials-section, .trading-section, .cta-final').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.7s ease';
     obs.observe(el);
 });
@@ -1184,48 +1001,10 @@ window.addEventListener('scroll', () => {
     navEl.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
 
-// NQ Sale Countdown - expires 11:59 PM EST Sunday 3/15/2026
-(function() {
-    const deadline = new Date('2026-03-16T04:59:00Z');
-    const card = document.querySelector('.nq-sale');
-    const els = {
-        days: document.getElementById('cd-days'),
-        hrs: document.getElementById('cd-hrs'),
-        mins: document.getElementById('cd-mins'),
-        secs: document.getElementById('cd-secs')
-    };
-    
-    function update() {
-        const diff = deadline - new Date();
-        
-        if (diff <= 0) {
-            if (card) {
-                card.classList.add('sale-expired');
-                const p = card.querySelector('.course-price');
-                if (p) p.textContent = '$250';
-            }
-            return;
-        }
-        
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor((diff % 86400000) / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        const s = Math.floor((diff % 60000) / 1000);
-        
-        if (els.days) els.days.textContent = String(d).padStart(2, '0');
-        if (els.hrs) els.hrs.textContent = String(h).padStart(2, '0');
-        if (els.mins) els.mins.textContent = String(m).padStart(2, '0');
-        if (els.secs) els.secs.textContent = String(s).padStart(2, '0');
-        
-        setTimeout(update, 1000);
-    }
-    update();
-})();
-
 // Live Discord member count
 (async function() {
     try {
-        const res = await fetch('https://discord.com/api/v9/invites/nAFMc9d8ag?with_counts=true');
+        const res = await fetch('https://discord.com/api/v9/invites/sGHTJEJfwz?with_counts=true');
         const data = await res.json();
         if (data.approximate_member_count) {
             const count = data.approximate_member_count.toLocaleString();
