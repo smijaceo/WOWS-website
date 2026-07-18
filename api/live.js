@@ -12,11 +12,15 @@ module.exports = async (req, res) => {
         if (!r.ok) throw new Error('kick ' + r.status);
         const data = await r.json();
         const live = !!(data && data.livestream && data.livestream.is_live);
-        res.status(200).json({
+        const out = {
             live,
             viewers: live ? (data.livestream.viewer_count || null) : null
-        });
+        };
+        if (req.query && req.query.debug) out.source = 'kick:' + r.status + ':' + (data.slug || 'no-slug');
+        res.status(200).json(out);
     } catch (e) {
-        res.status(200).json({ live: false });
+        const out = { live: false };
+        if (req.query && req.query.debug) out.source = 'error:' + e.message;
+        res.status(200).json(out);
     }
 };
